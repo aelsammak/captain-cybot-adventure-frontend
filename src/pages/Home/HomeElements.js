@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {NavLink as Link} from "react-router-dom";
 
 export const BackgroundImg = styled.div`
     width: 100%;
@@ -9,7 +10,7 @@ export const BackgroundImg = styled.div`
     background-position: center center;
 `
 
-export const GetStartedBtn = styled.button`
+export const GetStartedBtn = styled(Link)`
     width: 20%;
     font-size: 28px;
     font-weight: 500;
