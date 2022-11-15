@@ -66,7 +66,7 @@ function SignIn(props) {
                         {showError && <Error>{errorMsg}</Error>}
                         <ForgotPassword>FORGOT PASSWORD?</ForgotPassword> 
                     </ErrorContainer>
-                    <SignInBtn>LOGIN</SignInBtn>
+                    <SignInBtn type="submit">LOGIN</SignInBtn>
                     <SignUpStatement>DON'T HAVE AN ACCOUNT?<SignUpToggle to="/signup">SIGN UP</SignUpToggle></SignUpStatement>
                 </form>
             </SignInContainer>
