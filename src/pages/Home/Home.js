@@ -5,7 +5,7 @@ import img from "../../images/Home_Page.png";
 function Home() {
     return (
     <BackgroundImg img={img}>
-        <GetStartedBtn>GET STARTED</GetStartedBtn>
+        <GetStartedBtn to="/signin">GET STARTED</GetStartedBtn>
     </BackgroundImg>
     );
 }
