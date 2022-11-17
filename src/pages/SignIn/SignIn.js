@@ -12,7 +12,7 @@ function SignIn(props) {
     const [enteredPassword, setEnteredPassword] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
     const [showError, setShowError] = useState(false);
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const usernameHandler = (event) => {
         setEnteredUsername(event.target.value);
@@ -30,14 +30,14 @@ function SignIn(props) {
         }
         axios.post('http://localhost:8080/api/v0/login', signInUser)
             .then((res) => {
-                props.setLoggedInUser(res.data.access_token, res.data.username);
+                // props.setLoggedInUser(res.data.access_token, res.data.username);
                 localStorage.setItem("access_token", res.data.access_token);
-                localStorage.setItem("refresh_token", res.data.refresh_token);
                 localStorage.setItem("username", res.data.username);
                 setEnteredUsername("");
                 setEnteredPassword("");
-                history.push("/");
+                navigate("/");
             }).catch(err => {
+                console.log(err);
                 const msg = err.response.data.error;
                 if (msg.localeCompare("The username or password you entered is incorrect") === 0) {
                     setErrorMsg(msg);
