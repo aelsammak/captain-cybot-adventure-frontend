@@ -15,7 +15,7 @@ function SignUp() {
     const [enteredConfirmPassword, setConfirmPassword] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
     const [showError, setShowError] = useState(false);
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const usernameHandler = (event) => {
         setEnteredUsername(event.target.value);
@@ -48,7 +48,7 @@ function SignUp() {
                     setEnteredEmail("");
                     setEnteredPassword("");
                     setConfirmPassword("");
-                    history.push("/signin");
+                    navigate("/signin");
                 }).catch(err => {
                     const msg = err.response.data;
                     if (msg.localeCompare("email already exists") === 0) {
@@ -97,7 +97,7 @@ function SignUp() {
                     <ErrorContainer>
                         {showError && <Error>{errorMsg}</Error>}
                     </ErrorContainer>
-                    <input type="checkbox" style={{float: "left", width: "20px", height: "20px"}}/>
+                    <input required type="checkbox" style={{float: "left", width: "20px", height: "20px"}}/>
                     <SignInStatement style={{margin: "2px 0px 15px"}}>I HAVE MY PARENT'S PERMISSION TO REGISTER</SignInStatement>
                     <SignUpBtn type="submit">REGISTER</SignUpBtn>
                     <SignInStatement>ALREADY HAVE AN ACCOUNT?<SignInToggle to="/signin">SIGN IN</SignInToggle></SignInStatement>
