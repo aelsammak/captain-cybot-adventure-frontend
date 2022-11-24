@@ -1,27 +1,46 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BackgroundImg } from '../../pages/SignIn/SignInElements';
 import img from "../../images/Dialogue_Page.png"
-import img2 from "../../images/EARTH.png"
-import { TopContainer, WorldLabel } from './SpeechElements';
+import img2 from "../../images/CybotStance1.png"
+import { BottomContainer, CybotStanceImg, MiddleContainer, NextBtn, PlanetImg, TextBubble, TopContainer, WorldLabel} from './SpeechElements';
 import { Line } from '../../pages/SignUp/SignUpElements';
 import HomeIcon from '@mui/icons-material/Home';
 import IconButton from '@mui/material/IconButton';
 import { useNavigate } from 'react-router-dom';
 
-function Speech() {
+function Speech(props) {
     const navigate = useNavigate();
+    const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+
+    const handleClick = () => {
+        console.log(props.messages)
+        if (currentMessageIndex < props.messages.length - 1) {
+            setCurrentMessageIndex(currentMessageIndex + 1)
+        } else {
+            /* TODO: navigate to the lvl 1 of the world */
+            setCurrentMessageIndex(0);
+        }
+    };
 
     return (
         <BackgroundImg img={img}>
             <TopContainer>
                 <IconButton onClick={() => {navigate("/")}}>
-                    <HomeIcon style={{color: 'white', fontSize: '65px', paddingLeft: '1%', paddingTop: '0.5%'}} />
+                    <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
                 </IconButton>
-                <WorldLabel>WORLD 1 - EARTH</WorldLabel>
+                <WorldLabel><mark style={{backgroundColor: '#161616', color: 'white'}}>{props.title}</mark></WorldLabel>
                 <Line width={"25%"}/>
             </TopContainer>
-            <div><img src={img2} alt=""></img></div>
-            <div></div>
+
+            <MiddleContainer><PlanetImg src={props.planetImg} alt=""></PlanetImg></MiddleContainer>
+
+            <BottomContainer>
+                <CybotStanceImg src={img2} alt=""></CybotStanceImg> 
+                <TextBubble>
+                    <div>{props.messages[currentMessageIndex]}</div>
+                    <div style={{margin: "auto"}}><NextBtn onClick={handleClick}>NEXT</NextBtn></div>
+                </TextBubble>
+            </BottomContainer>
             
         </BackgroundImg>
     );
