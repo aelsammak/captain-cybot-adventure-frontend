@@ -6,38 +6,41 @@ export const SignUpContainer = styled.div`
     top: 40%;
     left: 50%;
     width: 30%;
-    height: 59%;
+    height: 38vw;
     transform: translate(-50%, -50%);
-    border-radius: 30px;
     background: #000A;
     align-items: center;
     text-align: center;
     margin-top: 4%;
-    padding: 2% 3% 35% 3%;
-    border: 3px solid white;
+    padding: 2% 3% 0% 3%;
+    border: 0.2vw solid white;
+    border-radius: 5%;
 `
 
 export const SignUpText = styled.h1`
     padding-bottom: 3.5%;
     color: #fff;
     font-weight: 600;
+    font-size: 4.5vh;
 `
 
 export const InputDiv = styled.div`
     position: relative; 
     width: 100%;
+    height: 2.6vw;
 `
 
 export const SignUpInput = styled.input`
+    height: 2.6vw;
     display: block;
     box-sizing: border-box;
 	border: none;
 	border-radius: 10px;
 	padding: 12px 15px;
-    padding-left: 37.5px;
-	margin-top: 30px;
+    padding-left: 12%;
+	margin-top: 8%;
 	width: 100%;
-    font-size: 0.8rem;
+    font-size: 2vh;
     
     &:focus {
         outline: 2px solid #c548ff;
@@ -45,17 +48,13 @@ export const SignUpInput = styled.input`
 `
 
 export const SignUpBtn = styled.button`
-    margin-top: 5px;
-    margin-bottom: 25px;
-    padding: 12px 50px;
     width: 100%;
-    display: inline-block;
-    font-size: 18px;
+    height: 3vw;
+    margin: 5% 0;
+    font-size: 2.5vh;
     border-radius: 4px;
     background: #c548ff;
     color: #fff;
-    border: none;
-    outline: none;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     text-decoration: none;
@@ -68,8 +67,8 @@ export const SignUpBtn = styled.button`
 
 export const SignInStatement = styled.p`
     color: #fff;
-    font-size: 14px;
     font-weight: bold;
+    font-size: 1.8vh;
 `
 
 export const SignInToggle = styled(Link)`

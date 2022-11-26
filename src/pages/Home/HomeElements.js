@@ -15,8 +15,8 @@ export const GetStartedBtn = styled(Link)`
     font-size: 28px;
     font-weight: 500;
     position: relative;
-    top: 695px;
-    left: 390px;
+    top: 75%;
+    left: 20%;
     border-radius: 4px;
     background: #7A63FF;
     padding: 15px 60px;
