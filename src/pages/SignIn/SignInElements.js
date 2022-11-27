@@ -6,36 +6,39 @@ export const SignInContainer = styled.div`
     top: 50%;
     left: 50%;
     width: 27%;
-    height: 45%;
+    height: 28vw;
     transform: translate(-50%, -50%);
-    border-radius: 30px;
     background: #000A;
     align-items: center;
     text-align: center;
-    padding: 2% 3% 25% 3%;
-    border: 3px solid white;
+    padding: 2% 3% 0% 3%;
+    border: 0.2vw solid white;
+    border-radius: 5%;
 `
 export const SignInText = styled.h1`
     padding-bottom: 3.5%;
     color: #fff;
     font-weight: 600;
+    font-size: 4.5vh;
 `
 
 export const InputDiv = styled.div`
     position: relative; 
     width: 100%;
+    height: 2.6vw;
 `
 
 export const SignInInput = styled.input`
+    height: 2.6vw;
     display: block;
     box-sizing: border-box;
 	border: none;
 	border-radius: 10px;
 	padding: 12px 15px;
-    padding-left: 37.5px;
-	margin-top: 30px;
+    padding-left: 12%;
+	margin-top: 10%;
 	width: 100%;
-    font-size: 0.8rem;
+    font-size: 2vh;
     
     &:focus {
         outline: 2px solid #c548ff;
@@ -44,14 +47,12 @@ export const SignInInput = styled.input`
 
 export const SignInBtn = styled.button`
     width: 100%;
-    margin: 25px 0;
-    font-size: 18px;
+    height: 3vw;
+    margin: 8% 0;
+    font-size: 2.5vh;
     border-radius: 4px;
     background: #c548ff;
-    padding: 12px 50px;
     color: #fff;
-    border: none;
-    outline: none;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     text-decoration: none;
@@ -64,8 +65,8 @@ export const SignInBtn = styled.button`
 
 export const SignUpStatement = styled.p`
     color: #fff;
-    font-size: 14px;
     font-weight: bold;
+    font-size: 2vh;
 `
 export const SignUpToggle = styled(Link)`
     padding-left: 2%;
@@ -79,7 +80,7 @@ export const SignUpToggle = styled(Link)`
 `
 
 export const ForgotPassword = styled.a`
-    font-size: 13px;
+    font-size: 1.7vh;
     float: right;
     color: #fff;
     cursor: pointer;

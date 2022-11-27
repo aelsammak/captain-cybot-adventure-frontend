@@ -5,9 +5,11 @@ import Home from "./pages/Home/Home.js";
 import SignUp from "./pages/SignUp/SignUp.js";
 import SignIn from "./pages/SignIn/SignIn.js";
 import Speech from './components/Speech/Speech';
+import Worlds from "./pages/Worlds/Worlds.js";
+import Menu from "./pages/Menu/Menu.js";
 
 // Test world image
-import img from "./images/EARTH.png"
+import img from "./images/EARTH1.png"
 
 function App() {
   const messages = [
@@ -22,6 +24,8 @@ function App() {
             <Route path="/signup" exact element={<SignUp/>} />
             <Route path="/signin" exact element={<SignIn/>} />
             <Route path="/speech" exact element={<Speech messages={messages} planetImg={img} title={"WORLD 1 - EARTH"}/>} />
+            <Route path="/worlds" exact element={<Worlds/>} />
+            <Route path="/menu" exact element={<Menu/>} />
             {/* <Route path="/signin" component={SignIn} />
             <Route path="/" component={} />
             <Route path="/" component={} /> */}

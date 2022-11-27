@@ -80,25 +80,25 @@ function SignUp() {
                 <form onSubmit={submitHandler}>
                     <InputDiv>
                         <SignUpInput type="text" placeholder="USERNAME" value={enteredUsername} onChange={usernameHandler} />
-                        <PersonIcon style={{position: "absolute", top: "7px", left: "5px"}} />
+                        <PersonIcon style={{position: "absolute", top: "0px", left: "5px", left: "5px", width:"8%", height: "100%"}} />
                     </InputDiv>
                     <InputDiv>
                         <SignUpInput type="email" placeholder="EMAIL" value={enteredEmail} onChange={emailHandler} />
-                        <MailIcon style={{position: "absolute", top: "7px", left: "5px"}} />
+                        <MailIcon style={{position: "absolute", top: "0px", left: "5px", left: "5px", width:"8%", height: "100%"}} />
                     </InputDiv>
                     <InputDiv>
                         <SignUpInput type="password" placeholder="PASSWORD" value={enteredPassword} onChange={passwordHandler} />
-                        <LockIcon style={{position: "absolute", top: "7px", left: "5px"}} />
+                        <LockIcon style={{position: "absolute", top: "0px", left: "5px", left: "5px", width:"8%", height: "100%"}} />
                     </InputDiv>
                     <InputDiv>
                         <SignUpInput type="password" placeholder="CONFIRM PASSWORD" value={enteredConfirmPassword} onChange={confirmPasswordHandler} />
-                        <LockIcon style={{position: "absolute", top: "7px", left: "5px"}} />
+                        <LockIcon style={{position: "absolute", top: "0px", left: "5px", left: "5px", width:"8%", height: "100%"}} />
                     </InputDiv>
                     <ErrorContainer>
                         {showError && <Error>{errorMsg}</Error>}
                     </ErrorContainer>
-                    <input required type="checkbox" style={{float: "left", width: "20px", height: "20px"}}/>
-                    <SignInStatement style={{margin: "2px 0px 15px"}}>I HAVE MY PARENT'S PERMISSION TO REGISTER</SignInStatement>
+                    <input required type="checkbox" style={{float: "left", width:"2.4vh", height: "2.8vh", accentColor: "#c548ff"}}/>
+                    <SignInStatement style={{margin: "0.8% 0% 5%"}}>I HAVE MY PARENT'S PERMISSION TO REGISTER</SignInStatement>
                     <SignUpBtn type="submit">REGISTER</SignUpBtn>
                     <SignInStatement>ALREADY HAVE AN ACCOUNT?<SignInToggle to="/signin">SIGN IN</SignInToggle></SignInStatement>
                 </form>

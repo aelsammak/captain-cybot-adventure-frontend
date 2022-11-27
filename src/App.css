@@ -6,3 +6,19 @@
     margin: 0;
     padding: 0;
 }
+
+.zoom-box {
+    transition: transform .2s;
+ }
+  
+.zoom-box:hover {
+    transform: scale(1.1);
+}
+
+.gray{
+    filter: grayscale(100%)
+}
+
+.buttonClick{
+    cursor: pointer;
+}
