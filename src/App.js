@@ -9,7 +9,7 @@ import Worlds from "./pages/Worlds/Worlds.js";
 import Menu from "./pages/Menu/Menu.js";
 
 // Test world image
-import img from "./images/EARTH1.png"
+import img from "./images/Earth.png"
 
 function App() {
   const messages = [
