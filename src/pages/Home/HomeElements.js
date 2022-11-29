@@ -15,11 +15,11 @@ export const GetStartedBtn = styled(Link)`
     font-size: 28px;
     font-weight: 500;
     position: relative;
-    top: 75%;
-    left: 20%;
-    border-radius: 4px;
+    top: 37.78vw;
+    left: 20.44vw;
+    border-radius: 0.21vw;
     background: #7A63FF;
-    padding: 15px 60px;
+    padding: .75% 4%;
     color: #fff;
     border: none;
     outline: none;
