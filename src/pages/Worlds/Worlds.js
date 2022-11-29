@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {BackgroundImg, Line, TitleContainer, WorldSelectionText, PlanetsContainer, Planet, PlanetText, PlanetsRow, PlanetDescription} from "./WorldsElements";
 import background from "../../images/Worlds_Background.png"
 import earth from "../../images/Earth.png"
@@ -8,9 +8,17 @@ import jupiter from "../../images/Jupiter.png"
 import LockIcon from '@mui/icons-material/Lock';
 import HomeIcon from '@mui/icons-material/Home';
 import './../../App.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Worlds() {
+
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        if (localStorage.getItem("username") == null) {
+            navigate("/signin")
+        }
+    });
     
     const [earthLock, setEarthLock] = useState(false);
     const [marsLock, setMarsLock] = useState(true);
@@ -33,7 +41,7 @@ function Worlds() {
     return (
         <BackgroundImg img={background} >
             <Link to="/menu">
-                <HomeIcon className="buttonClick" style={{width:"5%", height: "10%", margin: "1% 0% 0% 1%", fill:"white"}} />
+                <HomeIcon className="buttonClick" style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
             </Link>
             <TitleContainer>
                 <WorldSelectionText>WORLD SELECTION</WorldSelectionText>

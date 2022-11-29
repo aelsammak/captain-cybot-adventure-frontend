@@ -48,7 +48,7 @@ function SignUp() {
                     setEnteredEmail("");
                     setEnteredPassword("");
                     setConfirmPassword("");
-                    navigate("/signin");
+                    navigate("/menu");
                 }).catch(err => {
                     const msg = err.response.data;
                     if (msg.localeCompare("email already exists") === 0) {
