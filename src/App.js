@@ -17,16 +17,20 @@ function App() {
     "If you would like to see more awesome stuff, check out the other writeups at codeworkshop.dev!",
     "Remember to wash your hands!"
   ]
+
   return (
     <Router>
         <Routes>
-            <Route path="*" exact element={<Home />} />
+            <Route path="*" exact element={<SignIn />} />
             <Route path="/" exact element={<Home/>} />
             <Route path="/signup" exact element={<SignUp/>} />
             <Route path="/signin" exact element={<SignIn/>} />
             <Route path="/speech" exact element={<Speech messages={messages} planetImg={img} title={"WORLD 1 - EARTH"}/>} />
-            <Route path="/worlds" exact element={<Worlds/>} />
-            <Route path="/menu" exact element={<Menu/>} />
+            {localStorage.getItem("username") && 
+            <>
+              <Route path="/menu" exact element={<Menu />} />
+              <Route path="/worlds" exact element={<Worlds />} />
+            </>}
             {/* <Route path="/signin" component={SignIn} />
             <Route path="/" component={} />
             <Route path="/" component={} /> */}
