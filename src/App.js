@@ -10,6 +10,7 @@ import Menu from "./pages/Menu/Menu.js";
 
 // Test world image
 import img from "./images/Earth.png"
+import WordSearch from './components/WordSearch/WordSearch';
 
 function App() {
   const messages = [
@@ -26,6 +27,7 @@ function App() {
             <Route path="/speech" exact element={<Speech messages={messages} planetImg={img} title={"WORLD 1 - EARTH"}/>} />
             <Route path="/worlds" exact element={<Worlds/>} />
             <Route path="/menu" exact element={<Menu/>} />
+            <Route path="/w" exact element={<WordSearch />} />
             {/* <Route path="/signin" component={SignIn} />
             <Route path="/" component={} />
             <Route path="/" component={} /> */}
