@@ -63,7 +63,7 @@ function WordSearch(props) {
             <IconButton onClick={() => {navigate("/")}}>
                 <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
             </IconButton>
-            {true && <SuccessPopup questionNumber={4} starsGained={1} redirect={"/"} />}
+            {wordsFound.length === props.wordBank.length && <SuccessPopup questionNumber={4} starsGained={1} redirect={"/"} />}
             <QuestionContainer>
                 <QuestionTypeText>Question {props.questionNumber}: Word Search</QuestionTypeText>
                 <HowToPlayText>Find all of the words hidden in the grid! Click on the letters to form a word.</HowToPlayText>
