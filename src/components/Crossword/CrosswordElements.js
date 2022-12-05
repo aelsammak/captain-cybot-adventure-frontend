@@ -28,19 +28,6 @@ export const HowToPlayText = styled.h1`
     font-weight: 400;
 `
 
-export const ScrmabledWordText = styled.h1`
-    padding-bottom: 10%;
-    padding-top: 10%;
-    color: #fff;
-    font-weight: 800;
-    font-size: 1.953vw;
-`
-
-export const InputDiv = styled.div`
-    position: relative; 
-    width: 100%;
-`
-
 export const Line = styled.hr`
     background-color: #c548ff;
     margin: auto; 
@@ -54,33 +41,6 @@ export const BackgroundImg = styled.div`
     height: 100vh;
     background-image: url(${props => props.img});
     background-size: cover;
-`
-
-export const Error = styled.p`
-    color: red;
-    font-size: 0.469vw;
-`
-
-export const ErrorContainer = styled.div`
-    padding-top: 3.5%;
-    height: 100%;
-    width: 100%;
-    text-align: center;
-    padding-bottom: 3.5%;
-`
-
-export const Wrapper = styled.div`
-  margin: auto;
-  padding: 0.391vw;
-  text-align: center;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-    Arial sans-serif;
-  color: white;
-  width: 100%;
-  text-align: center;
-  input:focus, textarea:focus, select:focus{
-    outline: none;
-  }
 `
 
 export const CrosswordContainer = styled.div`

@@ -13,7 +13,7 @@ function Crossword(props) {
 
     /* Unpack props */
     //const crosswordData = props.crosswordData;
-    const planet = 'EARTH';
+    const planet = props.planet;
     const questionNumber = props.questionNumber;
     const crosswordRef = useRef(null);
 
