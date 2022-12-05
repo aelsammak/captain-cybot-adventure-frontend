@@ -12,6 +12,7 @@ function Letter(props) {
         if (isLetterSelected) {
             props.setWordSelected(props.wordSelected + props.letter.toLowerCase())
             props.setLetterSelectedCoordinate(props.coordinate);
+            props.updateLettersInWordSelected(lettersInWordSelected => lettersInWordSelected.concat(props.coordinate));
             console.log("IN HERE ", props.wordSelected);
             if (props.wordSelected.length+1 === 2) {
                 props.setDirection(findDirection());
@@ -20,6 +21,7 @@ function Letter(props) {
             const lastIndex = props.wordSelected?.lastIndexOf(props.letter.toLowerCase());
             let word = props.wordSelected?.slice(0, lastIndex) + props.wordSelected?.slice(lastIndex + 1);
             props.setWordSelected(word);
+            props.updateLettersInWordSelected(lettersInWordSelected => lettersInWordSelected.filter(letter => {return letter.rowIndex !== props.coordinate.rowIndex && letter.colIndex !== props.coordinate.colIndex}));
             if (isFirstLetterSelected) {
                 props.setLetterSelectedCoordinate({rowIndex: -1, colIndex: -1}); // Set to default state
                 setIsFirstLetterSelected(false);
@@ -30,34 +32,37 @@ function Letter(props) {
                 props.setDirection("");
             }
         }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [isLetterSelected])
 
     const handleClick = () => {
-        // First letter selected
-        if (props.letterSelectedCoordinate.rowIndex === -1 && props.letterSelectedCoordinate.colIndex === -1) {
-            setIsFirstLetterSelected(true);
-            setIsLetterSelected(!isLetterSelected);
-        } else if (props.letterSelectedCoordinate.rowIndex === props.coordinate.rowIndex && props.letterSelectedCoordinate.colIndex === props.coordinate.colIndex) { // Click on itself
-            setIsLetterSelected(!isLetterSelected);
-        } else {
-            console.log("DIRECTION FROM PROPS: " + props.direction)
-            if (props.direction !== "" && props.wordSelected.length >= 2) {
-                // if two or more letters have been selected, ensure this letter is a neighbour with the opposite of props.direction
-                if (props.neighbours.filter(neighbour => 
-                    neighbour.rowIndex === props.letterSelectedCoordinate.rowIndex 
-                    && neighbour.colIndex === props.letterSelectedCoordinate.colIndex 
-                    && neighbour.direction === findOppositeDirection(props.direction)).length > 0) {
-                        setIsFirstLetterSelected(false);
-                        setPreviousLetterSelectedCoordinate(props.letterSelectedCoordinate)
-                        setIsLetterSelected(!isLetterSelected);
-                } 
-            } else if (props.direction === "" && props.wordSelected.length < 2) { // two letters have not been selected yet, we dont care about direction, just care about neighbours
-                if (props.neighbours.filter(neighbour => 
-                    neighbour.rowIndex === props.letterSelectedCoordinate.rowIndex && neighbour.colIndex === props.letterSelectedCoordinate.colIndex).length > 0) {
-                        setIsFirstLetterSelected(false);
-                        setPreviousLetterSelectedCoordinate(props.letterSelectedCoordinate)
-                        setIsLetterSelected(!isLetterSelected);
-                }  
+        if (!props.isDisabled) {
+            // First letter selected
+            if (props.letterSelectedCoordinate.rowIndex === -1 && props.letterSelectedCoordinate.colIndex === -1) {
+                setIsFirstLetterSelected(true);
+                setIsLetterSelected(!isLetterSelected);
+            } else if (props.letterSelectedCoordinate.rowIndex === props.coordinate.rowIndex && props.letterSelectedCoordinate.colIndex === props.coordinate.colIndex) { // Click on itself
+                setIsLetterSelected(!isLetterSelected);
+            } else {
+                console.log("DIRECTION FROM PROPS: " + props.direction)
+                if (props.direction !== "" && props.wordSelected.length >= 2) {
+                    // if two or more letters have been selected, ensure this letter is a neighbour with the opposite of props.direction
+                    if (props.neighbours.filter(neighbour => 
+                        neighbour.rowIndex === props.letterSelectedCoordinate.rowIndex 
+                        && neighbour.colIndex === props.letterSelectedCoordinate.colIndex 
+                        && neighbour.direction === findOppositeDirection(props.direction)).length > 0) {
+                            setIsFirstLetterSelected(false);
+                            setPreviousLetterSelectedCoordinate(props.letterSelectedCoordinate)
+                            setIsLetterSelected(!isLetterSelected);
+                    } 
+                } else if (props.direction === "" && props.wordSelected.length < 2) { // two letters have not been selected yet, we dont care about direction, just care about neighbours
+                    if (props.neighbours.filter(neighbour => 
+                        neighbour.rowIndex === props.letterSelectedCoordinate.rowIndex && neighbour.colIndex === props.letterSelectedCoordinate.colIndex).length > 0) {
+                            setIsFirstLetterSelected(false);
+                            setPreviousLetterSelectedCoordinate(props.letterSelectedCoordinate)
+                            setIsLetterSelected(!isLetterSelected);
+                    }  
+                }
             }
         }
     };

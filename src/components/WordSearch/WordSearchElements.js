@@ -4,10 +4,10 @@ export const QuestionContainer = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 1200px;
-    height: 780px;
+    width: 63.058vw;
+    height: 40.988vw;
     transform: translate(-50%, -50%);
-    border-radius: 30px;
+    border-radius: 1.576vw;
     background: #000A;
     align-items: center;
     text-align: center;
@@ -25,16 +25,14 @@ export const Rectangle = styled.div`
 `
 
 export const Letter = styled.div`
-    font-size: 24px;
+    font-size: 1.261vw;
     padding: 6% 8%;
     border: 0.2vw solid black;
-    /* border-radius: 50%; */
-    /* background-color: purple; */
 `
 
 export const Board = styled.table`
     table-layout: fixed;
-    width: 550px;
+    width: 28.902vw;
     border-spacing: 0px;
     border-collapse: collapse;
     text-align: center;
@@ -45,12 +43,11 @@ export const QuestionTypeText = styled.h1`
     padding-bottom: 2%;
     color: #fff;
     font-weight: 800;
-    font-size: 50px;
-    font-size: 4.5vh;
+    font-size: 2.627vw;
 `
 export const HowToPlayText = styled.h2`
     color: #fff;
-    font-size: 21px;
+    font-size: 1.104vw;
     font-weight: 400;
     padding-bottom: 0.5%;
 `
@@ -58,17 +55,18 @@ export const HowToPlayText = styled.h2`
 export const WordBank = styled.div`
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    grid-auto-rows: minmax(0, 40px);
+    grid-auto-rows: minmax(0, 2.102vw);
     justify-self: center;
     justify-items: center;
     text-align: center;
     align-items: center;
     color: white;
     padding-top: 2%;
-    gap: 10px;
+    gap: 0.525vw;
 `
 
 export const Word = styled.h3`
+    font-size: 0.998vw;
     font-weight: 400;
-    text-decoration: ${props => props.isFound ? "solid line-through 3px #c548ff" : "none"};
+    text-decoration: ${props => props.isFound ? "solid line-through 0.158vw #c548ff" : "none"};
 `
