@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {PopUpContainer, StarsImg, ContinueBtn} from "./SuccessPopupElements";
 import oneStar from "../../images/1_star.png";
 import twoStar from "../../images/2_star.png";
-import threeStar from "../../images/1_star.png";
+import threeStar from "../../images/3_star.png";
 
 function SuccessPopup(props) {
 
