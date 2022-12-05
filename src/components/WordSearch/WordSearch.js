@@ -91,7 +91,7 @@ function WordSearch(props) {
                                                                 isDisabled={lettersDisabled.filter(letter => letter.rowIndex === rowIndex && letter.colIndex === colIndex).length > 0}
                                                         />
                                                     )
-                                                } else if (colIndex === props.gridRowColLen-1) {
+                                                } else if (colIndex === props.boardLetters.length-1) {
                                                     // TOP RIGHT CORNER -> Neighbours are: boardLetters[0][colIndex-1] (LEFT), boardLetters[1][colIndex] (DOWN), boardLetters[1][colIndex-1] (DOWN-LEFT)
                                                     return (
                                                         <Letter key={colIndex} letter={subItems} 
@@ -123,7 +123,7 @@ function WordSearch(props) {
                                                         />
                                                     )
                                                 }
-                                            } else if (rowIndex === props.gridRowColLen-1) { // BOTTOM ROW
+                                            } else if (rowIndex === props.boardLetters.length-1) { // BOTTOM ROW
                                                 if (colIndex === 0) {
                                                     // BOTTOM LEFT CORNER -> Neighbours are: boardLetters[rowIndex-1][0] (UP), boardLetters[rowIndex][1] (RIGHT), boardLetters[rowIndex-1][1] (UP-RIGHT)
                                                     return (
@@ -138,7 +138,7 @@ function WordSearch(props) {
                                                                 isDisabled={lettersDisabled.filter(letter => letter.rowIndex === rowIndex && letter.colIndex === colIndex).length > 0}
                                                         />
                                                     )
-                                                } else if (colIndex === props.gridRowColLen-1) {
+                                                } else if (colIndex === props.boardLetters.length-1) {
                                                     // BOTTOM RIGHT CORNER -> Neighbours are: boardLetters[rowIndex][colIndex-1] (LEFT), boardLetters[rowIndex-1][colIndex] (UP), boardLetters[rowIndex-1][colIndex-1] (UP-LEFT)
                                                     return (
                                                         <Letter key={colIndex} letter={subItems} 
@@ -172,7 +172,7 @@ function WordSearch(props) {
                                                 }
                                             } else {
                                                 if (colIndex === 0) { // FIRST COLUMN
-                                                    if (rowIndex !== 0 && rowIndex !== props.gridRowColLen-1) { 
+                                                    if (rowIndex !== 0 && rowIndex !== props.boardLetters.length-1) { 
                                                         // LEFT SIDE COLUMN IN BETWEEN CORNERS (not including top-left & bottom-left corners) -> Neighbours are:
                                                         // boardLetters[rowIndex-1][0] (UP), boardLetters[rowIndex-1][1] (UP-RIGHT)
                                                         // boardLetters[rowIndex][1] (RIGHT), boardLetters[rowIndex+1][0] (DOWN), boardLetters[rowIndex+1][1] (DOWN-RIGHT)
@@ -189,8 +189,8 @@ function WordSearch(props) {
                                                             />
                                                         )
                                                     }
-                                                } else if (colIndex === props.gridRowColLen-1) { // LAST COLUMN
-                                                    if (rowIndex !== 0 && rowIndex !== props.gridRowColLen-1) {
+                                                } else if (colIndex === props.boardLetters.length-1) { // LAST COLUMN
+                                                    if (rowIndex !== 0 && rowIndex !== props.boardLetters.length-1) {
                                                         // RIGHT SIDE COLUMN IN BETWEEN CORNERS (not including top-right & bottom-right corners) -> Neighbours are:
                                                         // boardLetters[rowIndex-1][colIndex] (UP), boardLetters[rowIndex-1][colIndex-1] (UP-LEFT)
                                                         // boardLetters[rowIndex][colIndex-1] (LEFT), boardLetters[rowIndex+1][colIndex] (DOWN), boardLetters[rowIndex+1][colIndex-1] (DOWN-LEFT)

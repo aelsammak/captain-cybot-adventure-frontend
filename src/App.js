@@ -25,9 +25,6 @@ function App() {
                         ['R', 'E', 'L', 'B', 'G', 'C', 'C', 'T', 'O', 'S'],
                         ['K', 'M', 'A', 'L', 'W', 'A', 'R', 'E', 'E', 'N']];
 
-  /* Only allow for squard grids, therefore rowLength == colLength. So just use one variable */
-  const gridRowColLen = 10;
-
   const wordBank = ['protection', 'antivirus', 'replicate', 'slow', 'malware', 'creeper', 'damage', 'virus'];
 
   const messages = [
@@ -45,7 +42,7 @@ function App() {
             <Route path="/speech" exact element={<Speech messages={messages} planetImg={img} title={"WORLD 1 - EARTH"}/>} />
             <Route path="/worlds" exact element={<Worlds/>} />
             <Route path="/menu" exact element={<Menu name={localStorage.username} />} />
-            <Route path="/w" exact element={<WordSearch planet={"EARTH"} questionNumber={4} boardLetters={boardLetters} wordBank={wordBank} gridRowColLen={gridRowColLen} />} />
+            <Route path="/w" exact element={<WordSearch planet={"EARTH"} questionNumber={4} boardLetters={boardLetters} wordBank={wordBank} />} />
             {/* <Route path="/signin" component={SignIn} />
             <Route path="/" component={} />
             <Route path="/" component={} /> */}
