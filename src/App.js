@@ -11,8 +11,23 @@ import Menu from "./pages/Menu/Menu.js";
 // Test world image
 import img from "./images/Earth.png"
 import Crossword from './components/Crossword/Crossword';
+import WordSearch from './components/WordSearch/WordSearch';
 
 function App() {
+
+  const boardLetters = [['P', 'A', 'N', 'J', 'H', 'J', 'F', 'C', 'I', 'X'],
+                        ['R', 'R', 'N', 'S', 'Y', 'K', 'N', 'M', 'L' , 'Y'],
+                        ['C', 'E', 'O', 'T', 'L', 'I', 'K', 'T', 'M', 'S'],
+                        ['R', 'D', 'P', 'T', 'I', 'O', 'D', 'J', 'I', 'V'],
+                        ['E', 'A', 'E', 'L', 'E', 'V', 'W', 'V', 'F', 'I'],
+                        ['E', 'M', 'N', 'P', 'I', 'C', 'I', 'J', 'U', 'R'],
+                        ['P', 'A', 'K', 'Q', 'Q', 'C', 'T', 'R', 'K', 'U'],
+                        ['E', 'G', 'X', 'X', 'N', 'S', 'A', 'I', 'U', 'S'],
+                        ['R', 'E', 'L', 'B', 'G', 'C', 'C', 'T', 'O', 'S'],
+                        ['K', 'M', 'A', 'L', 'W', 'A', 'R', 'E', 'E', 'N']];
+
+  const wordBank = ['protection', 'antivirus', 'replicate', 'slow', 'malware', 'creeper', 'damage', 'virus'];
+
   const messages = [
     "Hello, This is Captain Cybot! Oh no! Evil malware has taken over the four worlds in our galaxy and each world has been infected with all sorts of malware like viruses, worms, trojans and ransomware. Join Captain Cybot on his adventure to defeat malware and free the galaxy once & for all. Are you ready to join Captain Cybot on his adventure?",
     "If you would like to see more awesome stuff, check out the other writeups at codeworkshop.dev!",
@@ -81,7 +96,9 @@ function App() {
             <Route path="/signin" exact element={<SignIn/>} />
             <Route path="/speech" exact element={<Speech messages={messages} planetImg={img} title={"WORLD 1 - EARTH"}/>} />
             <Route path="/worlds" exact element={<Worlds/>} />
-            <Route path="/menu" exact element={<Menu/>} />
+            <Route path="/menu" exact element={<Menu name={localStorage.username} />} />
+            {/*To be removed*/}
+            <Route path="/w" exact element={<WordSearch planet={"EARTH"} questionNumber={4} boardLetters={boardLetters} wordBank={wordBank} />} />
             <Route path="/crossword" exact element={<Crossword questionNumber='3' data={myData} planet='EARTH'/>} />
             {/* <Route path="/signin" component={SignIn} />
             <Route path="/" component={} />
