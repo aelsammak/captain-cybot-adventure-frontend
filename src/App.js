@@ -10,6 +10,7 @@ import Menu from "./pages/Menu/Menu.js";
 
 // Test world image
 import img from "./images/Earth.png"
+import Crossword from './components/Crossword/Crossword';
 import WordSearch from './components/WordSearch/WordSearch';
 
 function App() {
@@ -32,7 +33,61 @@ function App() {
     "If you would like to see more awesome stuff, check out the other writeups at codeworkshop.dev!",
     "Remember to wash your hands!"
   ]
-
+  const myData = {
+    "across": {
+        "2": {
+            "col": 5,
+            "answer": "NORTON",
+            "clue": "A common anti-virus software.",
+            "row": 1
+        },
+        "5": {
+            "col": 0,
+            "answer": "COMPUTER",
+            "clue": "A device for working with information.",
+            "row": 4
+        },
+        "6": {
+            "col": 7,
+            "answer": "EMAIL",
+            "clue": "A message sent through the internet.",
+            "row": 5
+        },
+        "7": {
+            "col": 1,
+            "answer": "MALWARE",
+            "clue": "Software that may harm your computer.",
+            "row": 6
+        },
+        "8": {
+            "col": 2,
+            "answer": "VIRUSES",
+            "clue": "Malicious self-reproducing programs that change how a computer works.",
+            "row": 8
+        }
+    },
+    "down": {
+        "1": {
+            "col": 9,
+            "answer": "SOFTWARE",
+            "clue": "The programs that tell the hardware what to do.",
+            "row": 0
+        },
+        "3": {
+            "col": 11,
+            "answer": "REPLICATE",
+            "clue": "Make an exact copy of; reproduce.",
+            "row": 2
+        },
+        "4": {
+            "col": 7,
+            "answer": "CREEPER",
+            "clue": "The first ever computer virus.",
+            "row": 3
+        }
+    }
+};
+  
   return (
     <Router>
         <Routes>
@@ -42,7 +97,9 @@ function App() {
             <Route path="/speech" exact element={<Speech messages={messages} planetImg={img} title={"WORLD 1 - EARTH"}/>} />
             <Route path="/worlds" exact element={<Worlds/>} />
             <Route path="/menu" exact element={<Menu name={localStorage.username} />} />
+            {/*To be removed*/}
             <Route path="/w" exact element={<WordSearch planet={"EARTH"} questionNumber={4} boardLetters={boardLetters} wordBank={wordBank} />} />
+            <Route path="/crossword" exact element={<Crossword questionNumber='3' data={myData} planet='EARTH'/>} />
             {/* <Route path="/signin" component={SignIn} />
             <Route path="/" component={} />
             <Route path="/" component={} /> */}
