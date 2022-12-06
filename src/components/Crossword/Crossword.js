@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import img from "../../images/Login_Signup.png"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -6,10 +6,12 @@ import { HowToPlayText, QuestionContainer, BackgroundImg, Line, QuestionTypeText
 import ReactCrossword from '@jaredreisinger/react-crossword';
 import { IconButton } from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
+import SuccessPopup from "../SuccessPopup/SuccessPopup";
 
 function Crossword(props) {
     const navigate = useNavigate();
     const myData = props.data;
+    const [isCrosswordCompleted, setIsCrosswordCompleted] = useState(false);
 
     /* Unpack props */
     //const crosswordData = props.crosswordData;
@@ -22,8 +24,8 @@ function Crossword(props) {
         'Authorization': localStorage.getItem('access_token')
     }
 
-    const crosswordCorrectHandler = (event) => {
-        event.preventDefault();
+    const crosswordCorrectHandler = () => {
+        setIsCrosswordCompleted(true);
         const answer = {
             answers: props.answers
         }
@@ -46,6 +48,7 @@ function Crossword(props) {
             <IconButton onClick={() => {navigate("/")}}>
                     <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
             </IconButton>
+            {isCrosswordCompleted && <SuccessPopup questionNumber={questionNumber} starsGained={3} redirect={"/"} />}
             <div>
                 <QuestionContainer>
                     <QuestionTypeText>Question {questionNumber}: Crossword</QuestionTypeText>
