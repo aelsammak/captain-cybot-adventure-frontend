@@ -1,95 +1,66 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import img from "../../images/Login_Signup.png"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { HowToPlayText, QuestionContainer, BackgroundImg, Line, QuestionTypeText, ErrorContainer, Error, ScrmabledWordText,SubmitBtn, Wrapper } from "./crosswordElement";
-import Crossword from '@jaredreisinger/react-crossword';
+import { HowToPlayText, QuestionContainer, BackgroundImg, Line, QuestionTypeText, CrosswordContainer } from "./CrosswordElements";
+import ReactCrossword from '@jaredreisinger/react-crossword';
+import { IconButton } from "@mui/material";
+import HomeIcon from '@mui/icons-material/Home';
+import SuccessPopup from "../SuccessPopup/SuccessPopup";
 
-function CrosswordQuestion() {
+function Crossword(props) {
+    const navigate = useNavigate();
+    const myData = props.data;
+    const [isCrosswordCompleted, setIsCrosswordCompleted] = useState(false);
 
-    const [outputString, setOutputString] = useState("");
-    const [errorMsg, setErrorMsg] = useState("");
-    const [showError, setShowError] = useState(false);
-    //const navigate = useNavigate();
+    /* Unpack props */
+    //const crosswordData = props.crosswordData;
+    const planet = props.planet;
+    const questionNumber = props.questionNumber;
+    const crosswordRef = useRef(null);
 
-    const myData = {
-        "across": {
-            "2": {
-                "col": 5,
-                "answer": "XXXXXXX",
-                "clue": "A common anti-virus software.",
-                "row": 1
-            },
-            "5": {
-                "col": 0,
-                "answer": "XXXXXX",
-                "clue": "A device for working with information.",
-                "row": 4
-            },
-            "6": {
-                "col": 7,
-                "answer": "XXXXXXXXX",
-                "clue": "A message sent through the internet.",
-                "row": 5
-            },
-            "7": {
-                "col": 1,
-                "answer": "XXXXXXXX",
-                "clue": "Software that may harm your computer.",
-                "row": 6
-            },
-            "8": {
-                "col": 2,
-                "answer": "XXXXXXX",
-                "clue": "Malicious self-reproducing programs that change how a computer works.",
-                "row": 8
-            }
-        },
-        "down": {
-            "1": {
-                "col": 9,
-                "answer": "XXXXXXXX",
-                "clue": "The programs that tell the hardware what to do.",
-                "row": 0
-            },
-            "3": {
-                "col": 11,
-                "answer": "XXXXX",
-                "clue": "Make an exact copy of; reproduce.",
-                "row": 2
-            },
-            "4": {
-                "col": 7,
-                "answer": "XXXXXXX",
-                "clue": "The first ever computer virus.",
-                "row": 3
-            }
-        }
-    };
-
-    const submitHandler = (event) => {
-        event.preventDefault();
+    const headers = {
+        'Content-type': 'application/json',
+        'Authorization': localStorage.getItem('access_token')
     }
-    
+
+    const crosswordCorrectHandler = () => {
+        setIsCrosswordCompleted(true);
+        const answer = {
+            answers: props.answers
+        }
+        
+        axios.post(('http://localhost:8080/api/v0/questions?planet='+planet+'&questionNumber='+questionNumber), answer, {
+            headers: headers
+        })
+            .then((res) => {
+                console.log(typeof res.data.correct);
+                console.log(res.data.correct == true);
+                
+            }).catch(err => {
+                console.log(err);
+            });
+    }
 
     return (
         
         <BackgroundImg img={img} >
+            <IconButton onClick={() => {navigate("/")}}>
+                    <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
+            </IconButton>
+            {isCrosswordCompleted && <SuccessPopup questionNumber={questionNumber} starsGained={3} redirect={"/"} />}
             <div>
                 <QuestionContainer>
-                    <QuestionTypeText>Question {1}: Word Scramble</QuestionTypeText>
-                    <HowToPlayText>Unscramble the following word</HowToPlayText>
+                    <QuestionTypeText>Question {questionNumber}: Crossword</QuestionTypeText>
+                    <HowToPlayText>Fill the crossword using the hints.</HowToPlayText>
                     <Line width={"100%"}/>
-                    <Crossword data={myData}>
-                    </Crossword>
+                    <CrosswordContainer>
+                        <ReactCrossword onCrosswordCorrect={crosswordCorrectHandler} data={myData} theme={{gridBackground:'rgb(0,0,0,0)', numberColor:'rgba(0,0,0,0.7)', focusBackground:'#c548ff', highlightBackground:'#d77aff'}}/>
+                    </CrosswordContainer>
                 </QuestionContainer>
             </div>
         </BackgroundImg>
     ); 
-    /*
-    return (
-        <Crossword data={myData} />
-    ) */
 }
 
-export default CrosswordQuestion;
+export default Crossword;
