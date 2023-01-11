@@ -35,7 +35,7 @@ function SignIn(props) {
                 localStorage.setItem("username", res.data.username);
                 setEnteredUsername("");
                 setEnteredPassword("");
-                navigate("/");
+                navigate("/menu");
             }).catch(err => {
                 console.log(err);
                 const msg = err.response.data.error;

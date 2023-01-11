@@ -12,6 +12,7 @@ import Menu from "./pages/Menu/Menu.js";
 import img from "./images/Earth.png"
 import Crossword from './components/Crossword/Crossword';
 import WordSearch from './components/WordSearch/WordSearch';
+import Quiz from './components/Quiz/Quiz';
 
 function App() {
 
@@ -87,6 +88,31 @@ function App() {
         }
     }
 };
+
+const questions = [
+        {
+            "id": 1,
+            "question": "What is Malware?",
+            "options": [
+                "Software that protects your computer from viruses",
+                "Software that protects your computer from ransomware",
+                "Software that updates your computers operating system",
+                "Software that may harm your computer"
+            ],
+            "questionNumber": 1
+        },
+        {
+            "id": 2,
+            "question": "Which of the following may be an indication that a computer has been infected by a virus or other malware?",
+            "options": [
+                "Computer runs very slowly",
+                "Increase in spam email",
+                "Random operating system updates",
+                "YouTube is not loading"
+            ],
+            "questionNumber": 2
+        }
+];
   
   return (
     <Router>
@@ -99,7 +125,8 @@ function App() {
             <Route path="/menu" exact element={<Menu name={localStorage.username} />} />
             {/*To be removed*/}
             <Route path="/w" exact element={<WordSearch planet={"EARTH"} questionNumber={4} boardLetters={boardLetters} wordBank={wordBank} />} />
-            <Route path="/crossword" exact element={<Crossword questionNumber='3' data={myData} planet='EARTH'/>} />
+            <Route path="/crossword" exact element={<Crossword questionNumber='3' data={myData} planet={"EARTH"} />} />
+            <Route path="/quiz" exact element={<Quiz questions={questions} planet={"EARTH"} />} />
             {/* <Route path="/signin" component={SignIn} />
             <Route path="/" component={} />
             <Route path="/" component={} /> */}
