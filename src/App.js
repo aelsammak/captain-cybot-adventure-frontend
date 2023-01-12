@@ -12,6 +12,8 @@ import Menu from "./pages/Menu/Menu.js";
 import img from "./images/Earth.png"
 import Crossword from './components/Crossword/Crossword';
 import WordSearch from './components/WordSearch/WordSearch';
+import WordScramble from './components/WordScramble/WordScramble';
+import GuessTheImage from './components/GuessTheImage/GuessTheImage';
 
 function App() {
 
@@ -98,8 +100,10 @@ function App() {
             <Route path="/worlds" exact element={<Worlds/>} />
             <Route path="/menu" exact element={<Menu name={localStorage.username} />} />
             {/*To be removed*/}
-            <Route path="/w" exact element={<WordSearch planet={"EARTH"} questionNumber={4} boardLetters={boardLetters} wordBank={wordBank} />} />
-            <Route path="/crossword" exact element={<Crossword questionNumber='3' data={myData} planet='EARTH'/>} />
+            <Route path="/WordSearch" exact element={<WordSearch planet={"EARTH"} questionNumber={4} boardLetters={boardLetters} wordBank={wordBank} />} />
+            <Route path="/Crossword" exact element={<Crossword questionNumber='3' data={myData} planet='EARTH'/>} />
+            <Route path="/WordScramble" exact element={<WordScramble questionNumber='3' scrambledWord='RRECEPE' planet='EARTH'/>} />
+            <Route path="/GuessTheImage" exact element={<GuessTheImage questionNumber='3' filename='World1Question2.png' numChars='9' planet='EARTH'/>} />
             {/* <Route path="/signin" component={SignIn} />
             <Route path="/" component={} />
             <Route path="/" component={} /> */}
