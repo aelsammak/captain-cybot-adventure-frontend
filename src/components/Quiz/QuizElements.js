@@ -44,11 +44,11 @@ export const QuizCard = styled.div`
 `
 
 export const MCOption = styled.button`
-    width: 100%;
+    min-width: 100%;
     height: 3vw;
     margin: 1% 0;
-    font-size: 2.5vh;
-    border-radius: 10px;
+    white-space: nowrap;
+    font-size: 0.833vw;
     background: #fff;
     color: #000;
     cursor: pointer;
