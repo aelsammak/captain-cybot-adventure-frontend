@@ -36,6 +36,7 @@ function SignIn(props) {
                 setEnteredUsername("");
                 setEnteredPassword("");
                 navigate("/menu");
+                window.location.reload();
             }).catch(err => {
                 console.log(err);
                 const msg = err.response.data.error;

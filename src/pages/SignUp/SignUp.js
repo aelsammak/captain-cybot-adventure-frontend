@@ -58,7 +58,7 @@ function SignUp() {
                         setErrorMsg(msg);
                         setShowError(true);
                     }
-                    console.log(err)
+                    console.log(err);
                     setEnteredUsername("");
                     setEnteredEmail("");
                     setEnteredPassword("");
@@ -80,19 +80,19 @@ function SignUp() {
                 <form onSubmit={submitHandler}>
                     <InputDiv>
                         <SignUpInput type="text" placeholder="USERNAME" value={enteredUsername} onChange={usernameHandler} />
-                        <PersonIcon style={{position: "absolute", top: "0px", left: "5px", left: "5px", width:"8%", height: "100%"}} />
+                        <PersonIcon style={{position: "absolute", top: "0px", left: "5px", width:"8%", height: "100%"}} />
                     </InputDiv>
                     <InputDiv>
                         <SignUpInput type="email" placeholder="EMAIL" value={enteredEmail} onChange={emailHandler} />
-                        <MailIcon style={{position: "absolute", top: "0px", left: "5px", left: "5px", width:"8%", height: "100%"}} />
+                        <MailIcon style={{position: "absolute", top: "0px", left: "5px", width:"8%", height: "100%"}} />
                     </InputDiv>
                     <InputDiv>
                         <SignUpInput type="password" placeholder="PASSWORD" value={enteredPassword} onChange={passwordHandler} />
-                        <LockIcon style={{position: "absolute", top: "0px", left: "5px", left: "5px", width:"8%", height: "100%"}} />
+                        <LockIcon style={{position: "absolute", top: "0px", left: "5px", width:"8%", height: "100%"}} />
                     </InputDiv>
                     <InputDiv>
                         <SignUpInput type="password" placeholder="CONFIRM PASSWORD" value={enteredConfirmPassword} onChange={confirmPasswordHandler} />
-                        <LockIcon style={{position: "absolute", top: "0px", left: "5px", left: "5px", width:"8%", height: "100%"}} />
+                        <LockIcon style={{position: "absolute", top: "0px", left: "5px", width:"8%", height: "100%"}} />
                     </InputDiv>
                     <ErrorContainer>
                         {showError && <Error>{errorMsg}</Error>}

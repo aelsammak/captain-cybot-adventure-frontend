@@ -35,7 +35,7 @@ function Crossword(props) {
         })
             .then((res) => {
                 console.log(typeof res.data.correct);
-                console.log(res.data.correct == true);
+                console.log(res.data.correct === true);
                 
             }).catch(err => {
                 console.log(err);

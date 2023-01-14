@@ -7,6 +7,8 @@ import SignIn from "./pages/SignIn/SignIn.js";
 import Speech from './components/Speech/Speech';
 import Worlds from "./pages/Worlds/Worlds.js";
 import Menu from "./pages/Menu/Menu.js";
+import Levels from './components/Levels/Levels.js';
+import Customization from './pages/Customization/Customization.js';
 
 // Test world image
 import img from "./images/Earth.png"
@@ -124,13 +126,16 @@ const questions = [
             <Route path="/speech" exact element={<Speech messages={messages} planetImg={img} title={"WORLD 1 - EARTH"}/>} />
             <Route path="/worlds" exact element={<Worlds/>} />
             <Route path="/menu" exact element={<Menu name={localStorage.username} />} />
-            {/*To be removed*/}
             <Route path="/w" exact element={<WordSearch planet={"EARTH"} questionNumber={4} boardLetters={boardLetters} wordBank={wordBank} />} />
             <Route path="/crossword" exact element={<Crossword questionNumber='3' data={myData} planet={"EARTH"} />} />
             <Route path="/quiz" exact element={<Quiz questions={questions} planet={"EARTH"} />} />
-            {/* <Route path="/signin" component={SignIn} />
-            <Route path="/" component={} />
-            <Route path="/" component={} /> */}
+            {localStorage.getItem("username") && 
+            <>
+              <Route path="/menu" exact element={<Menu />} />
+              <Route path="/worlds" exact element={<Worlds />} />
+              <Route path="/levels" exact element={<Levels />} />
+              <Route path="/customization" exact element={<Customization />} />
+            </>}
         </Routes>
     </Router>
   );

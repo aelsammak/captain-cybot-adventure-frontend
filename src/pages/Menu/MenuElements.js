@@ -72,7 +72,6 @@ export const MenuBtn = styled.button`
     font-weight: 600;
     text-shadow: 0 0 5px black, 0 0 5px black, 0 0 5px black, 0 0 5px black;
     border-radius: 10px c548ff;
-    padding: 12px 50px;
     color: #fff;
     border: none;
     outline: none;
