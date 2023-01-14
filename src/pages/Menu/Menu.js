@@ -1,31 +1,41 @@
-import {BackgroundImg, Line, TitleContainer, MenuText, MenuBtn, ButtonsContainer, NameContainer, NameText,NameDescription} from "./MenuElements";
-import background from "../../images/Worlds_Background.png"
+import { BackgroundImg, Line, TitleContainer, MenuText, MenuBtn, ButtonsContainer, NameContainer, NameText, NameDescription } from "./MenuElements";
+import background from "../../images/Standard_Background.png"
 import AccountIcon from '@mui/icons-material/AccountCircle';
 import './../../App.css';
 import { Link } from 'react-router-dom';
-
-const name = localStorage.getItem('username');
+import LogoutIcon from '@mui/icons-material/Logout';
 
 function Menu() {
+
+    const logout = () => {
+        localStorage.clear();
+        window.location.reload(false);
+    }
+
     return (
         <BackgroundImg img={background} >
+            <Link to="/menu">
+                <LogoutIcon onClick={logout} className="buttonClick" style={{ color: 'white', fontSize: '5vw', paddingLeft: '1%', paddingTop: '0.5%' }} />
+            </Link>
             <NameContainer>
                 <NameDescription>
-                    <AccountIcon style={{width:"4%", height: "5%", fill:"white"}}></AccountIcon>
-                    <NameText>WELCOME {name.toUpperCase()}</NameText>
+                    <AccountIcon style={{ width: "4%", height: "5%", fill: "white" }}></AccountIcon>
+                    <NameText>WELCOME {localStorage.getItem("username").toUpperCase()}</NameText>
                 </NameDescription>
             </NameContainer>
             <TitleContainer>
                 <MenuText>CAPTAIN CYBOT'S ADVENTURE</MenuText>
-                <Line/>
+                <Line />
             </TitleContainer>
             <ButtonsContainer>
                 <Link to="/worlds">
-                    <MenuBtn  style={{backgroundColor:"#c548ff"}}>START</MenuBtn>
+                    <MenuBtn style={{ backgroundColor: "#c548ff" }}>START</MenuBtn>
                 </Link>
-                <MenuBtn style={{backgroundColor:"#ff1515"}}>CUSTOMIZATION</MenuBtn>
-                <MenuBtn style={{backgroundColor:"#15e1ff"}}>LEADERBOARD</MenuBtn>
-                <MenuBtn style={{backgroundColor:"#ffe715"}}>ABOUT</MenuBtn>
+                <Link to="/customization">
+                    <MenuBtn style={{ backgroundColor: "#ff1515" }}>CUSTOMIZATION</MenuBtn>
+                </Link>
+                <MenuBtn style={{ backgroundColor: "#15e1ff" }}>LEADERBOARD</MenuBtn>
+                <MenuBtn style={{ backgroundColor: "#ffe715" }}>ABOUT</MenuBtn>
             </ButtonsContainer>
         </BackgroundImg>
     );
