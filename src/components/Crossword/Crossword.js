@@ -45,7 +45,7 @@ function Crossword(props) {
     return (
         
         <BackgroundImg img={img} >
-            <IconButton onClick={() => {navigate("/")}}>
+            <IconButton onClick={() => {navigate("/menu")}}>
                     <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
             </IconButton>
             {isCrosswordCompleted && <SuccessPopup questionNumber={questionNumber} starsGained={3} redirect={"/"} />}
