@@ -25,7 +25,7 @@ function Speech(props) {
     return (
         <BackgroundImg img={img}>
             <TopContainer>
-                <IconButton onClick={() => {navigate("/")}}>
+                <IconButton onClick={() => {navigate("/menu")}}>
                     <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
                 </IconButton>
                 <WorldLabel><mark style={{backgroundColor: '#161616', color: 'white'}}>{props.title}</mark></WorldLabel>

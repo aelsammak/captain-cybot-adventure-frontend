@@ -14,12 +14,9 @@ import Customization from './pages/Customization/Customization.js';
 import img from "./images/Earth.png"
 import Crossword from './components/Crossword/Crossword';
 import WordSearch from './components/WordSearch/WordSearch';
-<<<<<<< HEAD
 import WordScramble from './components/WordScramble/WordScramble';
 import GuessTheImage from './components/GuessTheImage/GuessTheImage';
-=======
 import Quiz from './components/Quiz/Quiz';
->>>>>>> master
 
 function App() {
 
@@ -128,6 +125,8 @@ const questions = [
             <Route path="/" exact element={<Home/>} />
             <Route path="/signup" exact element={<SignUp/>} />
             <Route path="/signin" exact element={<SignIn/>} />
+            <Route path="/WordScramble" exact element={<WordScramble questionNumber='3' scrambledWord='RRECEPE' planet='EARTH'/>} />
+            <Route path="/GuessTheImage" exact element={<GuessTheImage questionNumber='3' filename='World1Question2.png' numChars='9' planet='EARTH'/>} />
             <Route path="/speech" exact element={<Speech messages={messages} planetImg={img} title={"WORLD 1 - EARTH"}/>} />
             <Route path="/worlds" exact element={<Worlds/>} />
             <Route path="/menu" exact element={<Menu name={localStorage.username} />} />

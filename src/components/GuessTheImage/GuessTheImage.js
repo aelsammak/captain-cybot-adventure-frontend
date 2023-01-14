@@ -3,7 +3,6 @@ import img from "../../images/Login_Signup.png"
 import axios from 'axios';
 import { HowToPlayText, QuestionContainer, BackgroundImg, Line, QuestionTypeText, ErrorContainer, Error,SubmitBtn, Wrapper, QuestionImg } from "./GuessTheImageElements";
 import RICIBs from "react-individual-character-input-boxes";
-import userEvent from "@testing-library/user-event";
 import { IconButton } from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
 import SuccessPopup from "../SuccessPopup/SuccessPopup";

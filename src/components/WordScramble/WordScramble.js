@@ -26,7 +26,6 @@ function WordScramble(props) {
     const [showError, setShowError] = useState(false);
     const [isCompleted, setIsCompleted] = useState(false);
     const [starsAchieved, setStarsAchieved] = useState(3);
-    //const navigate = useNavigate();
     const state = {
         amount: scrambledWord.length,
         regEx: RegExp('^[a-zA-Z0-9_.-]*$')
@@ -67,7 +66,7 @@ function WordScramble(props) {
 
     return (
         <BackgroundImg img={img} >
-            <IconButton onClick={() => {navigate("/")}}>
+            <IconButton onClick={() => {navigate("/menu")}}>
                     <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
             </IconButton>
             {isCompleted && <SuccessPopup questionNumber={questionNumber} starsGained={starsAchieved} redirect={"/"} />}
