@@ -60,7 +60,7 @@ function WordSearch(props) {
 
     return (
         <BackgroundImg img={img}>
-            <IconButton onClick={() => {navigate("/")}}>
+            <IconButton onClick={() => {navigate("/menu")}}>
                 <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
             </IconButton>
             {wordsFound.length === props.wordBank.length && <SuccessPopup questionNumber={4} starsGained={3} redirect={"/"} />}

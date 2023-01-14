@@ -7,13 +7,19 @@ import SignIn from "./pages/SignIn/SignIn.js";
 import Speech from './components/Speech/Speech';
 import Worlds from "./pages/Worlds/Worlds.js";
 import Menu from "./pages/Menu/Menu.js";
+import Levels from './components/Levels/Levels.js';
+import Customization from './pages/Customization/Customization.js';
 
 // Test world image
 import img from "./images/Earth.png"
 import Crossword from './components/Crossword/Crossword';
 import WordSearch from './components/WordSearch/WordSearch';
+<<<<<<< HEAD
 import WordScramble from './components/WordScramble/WordScramble';
 import GuessTheImage from './components/GuessTheImage/GuessTheImage';
+=======
+import Quiz from './components/Quiz/Quiz';
+>>>>>>> master
 
 function App() {
 
@@ -89,24 +95,52 @@ function App() {
         }
     }
 };
+
+const questions = [
+        {
+            "id": 1,
+            "question": "What is Malware?",
+            "options": [
+                "Software that protects your computer from viruses",
+                "Software that protects your computer from ransomware",
+                "Software that updates your computers operating system",
+                "Software that may harm your computer"
+            ],
+            "questionNumber": 1
+        },
+        {
+            "id": 2,
+            "question": "Which of the following may be an indication that a computer has been infected by a virus or other malware?",
+            "options": [
+                "Computer runs very slowly",
+                "Increase in spam email",
+                "Random operating system updates",
+                "YouTube is not loading"
+            ],
+            "questionNumber": 2
+        }
+];
   
   return (
     <Router>
         <Routes>
+            <Route path="*" exact element={<SignIn />} />
             <Route path="/" exact element={<Home/>} />
             <Route path="/signup" exact element={<SignUp/>} />
             <Route path="/signin" exact element={<SignIn/>} />
             <Route path="/speech" exact element={<Speech messages={messages} planetImg={img} title={"WORLD 1 - EARTH"}/>} />
             <Route path="/worlds" exact element={<Worlds/>} />
             <Route path="/menu" exact element={<Menu name={localStorage.username} />} />
-            {/*To be removed*/}
-            <Route path="/WordSearch" exact element={<WordSearch planet={"EARTH"} questionNumber={4} boardLetters={boardLetters} wordBank={wordBank} />} />
-            <Route path="/Crossword" exact element={<Crossword questionNumber='3' data={myData} planet='EARTH'/>} />
-            <Route path="/WordScramble" exact element={<WordScramble questionNumber='3' scrambledWord='RRECEPE' planet='EARTH'/>} />
-            <Route path="/GuessTheImage" exact element={<GuessTheImage questionNumber='3' filename='World1Question2.png' numChars='9' planet='EARTH'/>} />
-            {/* <Route path="/signin" component={SignIn} />
-            <Route path="/" component={} />
-            <Route path="/" component={} /> */}
+            <Route path="/w" exact element={<WordSearch planet={"EARTH"} questionNumber={4} boardLetters={boardLetters} wordBank={wordBank} />} />
+            <Route path="/crossword" exact element={<Crossword questionNumber='3' data={myData} planet={"EARTH"} />} />
+            <Route path="/quiz" exact element={<Quiz questions={questions} planet={"EARTH"} />} />
+            {localStorage.getItem("username") && 
+            <>
+              <Route path="/menu" exact element={<Menu />} />
+              <Route path="/worlds" exact element={<Worlds />} />
+              <Route path="/levels" exact element={<Levels />} />
+              <Route path="/customization" exact element={<Customization />} />
+            </>}
         </Routes>
     </Router>
   );

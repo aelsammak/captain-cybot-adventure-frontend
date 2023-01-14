@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { BackgroundImg } from '../../pages/SignIn/SignInElements';
-import img from "../../images/Worlds_Background.png"
+import img from "../../images/Standard_Background.png"
 import img2 from "../../images/CybotStance1.png"
 import { BottomContainer, CybotStanceImg, MiddleContainer, NextBtn, PlanetImg, TextBubble, TopContainer, WorldLabel} from './SpeechElements';
 import { Line } from '../../pages/SignUp/SignUpElements';
