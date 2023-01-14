@@ -35,7 +35,7 @@ function SignIn(props) {
                 localStorage.setItem("username", res.data.username);
                 setEnteredUsername("");
                 setEnteredPassword("");
-                navigate("/");
+                navigate("/menu");
             }).catch(err => {
                 console.log(err);
                 const msg = err.response.data.error;
@@ -56,11 +56,11 @@ function SignIn(props) {
                 <form onSubmit={submitHandler}>
                     <InputDiv>
                         <SignInInput type="text" placeholder="USERNAME" value={enteredUsername} onChange={usernameHandler} />
-                        <PersonIcon style={{position: "absolute", top: "0px", left: "5px", left: "5px", width:"8%", height: "100%"}} />
+                        <PersonIcon style={{position: "absolute", top: "0px", left: "5px", width:"8%", height: "100%"}} />
                     </InputDiv>
                     <InputDiv>
                         <SignInInput type="password" placeholder="PASSWORD" value={enteredPassword} onChange={passwordHandler} />
-                        <LockIcon style={{position: "absolute", top: "0px", left: "5px", left: "5px", width:"8%", height: "100%"}} />
+                        <LockIcon style={{position: "absolute", top: "0px", left: "5px", width:"8%", height: "100%"}} />
                     </InputDiv>
                     <ErrorContainer>
                         {showError && <Error>{errorMsg}</Error>}
