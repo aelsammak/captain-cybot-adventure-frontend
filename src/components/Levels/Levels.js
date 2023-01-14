@@ -51,12 +51,12 @@ function Levels() {
     if (isLoading) {
         return <div className="App">Loading...</div>;
     } else {
-        playerInfo.levels[0].stars = 1;
+        /*playerInfo.levels[0].stars = 1;
         playerInfo.levels[1].stars = 1;
         playerInfo.levels[2].stars = 2;
         playerInfo.levels[3].stars = 3;
         playerInfo.levelsCompleted = 4;
-        playerInfo.quizScore = 100;
+        playerInfo.quizScore = 100;*/
         for (let i = 0; i < playerInfo.levels.length; i++) {
             if (playerInfo.levelsCompleted < i) { //have not reached the level
                 levelsImages[i] = defaultHolo;
