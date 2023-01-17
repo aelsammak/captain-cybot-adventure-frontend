@@ -22,8 +22,8 @@ function Quiz(props) {
   const navigate = useNavigate();
 
   const headers = {
-    'Content-type': 'application/json',
-    'Authorization': localStorage.getItem('access_token')
+    //'Content-type': 'application/json',
+    'Authorization': 'Bearer ' + localStorage.getItem('access_token')
   }
 
   useEffect(() => {
@@ -73,8 +73,8 @@ function Quiz(props) {
                 <CheckCircleIcon style={{color: "#00A300", fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
                 <QuizScoreText>QUIZ SCORE</QuizScoreText>
                 <QuizScore>
-                    {score} out of {props.questions.length} correct - (
-                    {(score / props.questions.length) * 100}%)
+                    {score * props.questions.length / 100} out of {props.questions.length} correct - (
+                    {(score) }%)
                 </QuizScore>
                 <ContinueBtn onClick={() => {navigate("/worlds")}}>CONTINUE</ContinueBtn>
               </QuizScoreContainer>
