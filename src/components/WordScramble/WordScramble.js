@@ -17,8 +17,8 @@ function WordScramble(props) {
     const questionNumber = props.questionNumber;
 
     const headers = {
-        'Content-type': 'application/json',
-        'Authorization': localStorage.getItem('access_token')
+        //'Content-type': 'application/json',
+        'Authorization':  'Bearer: ' + localStorage.getItem('access_token')
     }
 
     const [outputString, setOutputString] = useState("");
