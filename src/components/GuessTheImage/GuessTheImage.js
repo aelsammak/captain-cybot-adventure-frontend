@@ -17,7 +17,7 @@ function GuessTheImage(props) {
 
     const headers = {
         //'Content-type': 'application/json',
-        'Authorization': 'Bearer: ' + localStorage.getItem('access_token')
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token')
     }
 
     const [outputString, setOutputString] = useState("");
