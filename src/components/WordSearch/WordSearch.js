@@ -34,11 +34,33 @@ function WordSearch(props) {
             console.log(wordsFound);
         }
 
+        // Word has been found but, letters are selected in the opposite order
+        let reversedWordSelected =  reverseStr(wordSelected);
+        if (props.wordBank.includes(reversedWordSelected)) {
+            let indexOfWord = props.wordBank.indexOf(reversedWordSelected);
+            updateWordsFound(wordsFound => wordsFound.concat(indexOfWord));
+            setWordSelected("");
+            setLetterSelectedCoordinate({rowIndex: -1, colIndex: -1});
+            setDirection("");
+            updateLettersDisabled(lettersDisabled => lettersDisabled.concat(lettersInWordSelected));
+            updateLettersInWordSelected([]);
+            console.log(wordsFound);
+        }
+
         if (wordsFound.length === props.wordBank.length) {
             wordSearchCompleted();
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [wordSelected])
+
+    const reverseStr = (str) => {
+        // empty string
+        let reversedStr = "";
+        for (let i = str.length - 1; i >= 0; i--) {
+            reversedStr += str[i];
+        }
+        return reversedStr;
+    }
 
     const headers = {
         'Content-type': 'application/json',
