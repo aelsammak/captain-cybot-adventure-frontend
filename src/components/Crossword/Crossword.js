@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import img from "../../images/Login_Signup.png"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -12,12 +12,16 @@ function Crossword(props) {
     const navigate = useNavigate();
     const myData = props.data;
     const [isCrosswordCompleted, setIsCrosswordCompleted] = useState(false);
+    const [startTime, setStartTime] = useState(0);
 
     /* Unpack props */
     //const crosswordData = props.crosswordData;
     const planet = props.planet;
     const questionNumber = props.questionNumber;
-    const crosswordRef = useRef(null);
+
+    useEffect(() => {
+        setStartTime(Math.floor(Date.now() / 1000));
+    }, [])
 
     const headers = {
         'Content-type': 'application/json',
@@ -27,9 +31,9 @@ function Crossword(props) {
     const crosswordCorrectHandler = () => {
         setIsCrosswordCompleted(true);
         const answer = {
-            answers: props.answers
+            answers: props.answers,
+            timeTaken: (Math.floor(Date.now() / 1000) - startTime)
         }
-        
         axios.post(('http://localhost:8080/api/v0/questions?planet='+planet+'&questionNumber='+questionNumber), answer, {
             headers: headers
         })
