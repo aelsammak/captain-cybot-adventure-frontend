@@ -93,6 +93,8 @@ function App() {
     }
 };
 
+const crosswordAnswers = ['software', 'norton', 'replicate', 'creeper', 'computer', 'email', 'malware', 'viruses'];
+
 const questions = [
         {
             "id": 1,
@@ -125,12 +127,12 @@ const questions = [
             <Route path="/" exact element={<Home/>} />
             <Route path="/signup" exact element={<SignUp/>} />
             <Route path="/signin" exact element={<SignIn/>} />
-            <Route path="/WordScramble" exact element={<WordScramble questionNumber='1' scrambledWord='RRECEPE' planet='EARTH'/>} />
-            <Route path="/GuessTheImage" exact element={<GuessTheImage questionNumber='2' filename='World1Question2.png' numChars='9' planet='EARTH'/>} />
+            <Route path="/WordScramble" exact element={<WordScramble questionNumber={1} scrambledWord='RRECEPE' planet='EARTH'/>} />
+            <Route path="/GuessTheImage" exact element={<GuessTheImage questionNumber={2} filename='World1Question2.png' numChars='9' planet='EARTH'/>} />
             <Route path="/speech" exact element={<Speech messages={messages} planetImg={img} title={"WORLD 1 - EARTH"}/>} />
             <Route path="/menu" exact element={<Menu name={localStorage.username} />} />
-            <Route path="/w" exact element={<WordSearch planet={"EARTH"} questionNumber={4} boardLetters={boardLetters} wordBank={wordBank} />} />
-            <Route path="/crossword" exact element={<Crossword questionNumber='3' data={myData} planet={"EARTH"} />} />
+            <Route path="/w" exact element={<WordSearch planet={"EARTH"} questionNumber={3} boardLetters={boardLetters} wordBank={wordBank} />} />
+            <Route path="/crossword" exact element={<Crossword questionNumber={4} board={myData} answers={crosswordAnswers} planet={"EARTH"} />} />
             <Route path="/quiz" exact element={<Quiz questions={questions} planet={"EARTH"} />} />
             {localStorage.getItem("username") && 
             <>

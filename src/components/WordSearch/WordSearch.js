@@ -19,7 +19,12 @@ function WordSearch(props) {
     const [direction, setDirection] = useState("");
     const [lettersInWordSelected, updateLettersInWordSelected] = useState([]);
     const [lettersDisabled, updateLettersDisabled] = useState([]);
+    const [startTime, setStartTime] = useState(0);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setStartTime(Math.floor(Date.now() / 1000));
+    }, [])
 
     useEffect(() => {
         // Word has been found
@@ -63,13 +68,13 @@ function WordSearch(props) {
     }
 
     const headers = {
-        'Content-type': 'application/json',
-        'Authorization': localStorage.getItem('access_token')
+        'Authorization': "Bearer " + localStorage.getItem('access_token')
     }
 
     const wordSearchCompleted = () => {
         const answer = {
-            answers: props.wordBank
+            answers: props.wordBank,
+            timeTaken: (Math.floor(Date.now() / 1000) - startTime)
         }
         axios.post(('http://localhost:8080/api/v0/questions?planet='+props.planet+'&questionNumber='+props.questionNumber), answer, {
             headers: headers
