@@ -68,8 +68,7 @@ function WordSearch(props) {
     }
 
     const headers = {
-        'Content-type': 'application/json',
-        'Authorization': localStorage.getItem('access_token')
+        'Authorization': "Bearer " + localStorage.getItem('access_token')
     }
 
     const wordSearchCompleted = () => {

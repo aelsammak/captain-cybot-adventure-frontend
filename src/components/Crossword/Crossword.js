@@ -10,7 +10,7 @@ import SuccessPopup from "../SuccessPopup/SuccessPopup";
 
 function Crossword(props) {
     const navigate = useNavigate();
-    const myData = props.data;
+    const crosswordBoard = props.board;
     const [isCrosswordCompleted, setIsCrosswordCompleted] = useState(false);
     const [startTime, setStartTime] = useState(0);
 
@@ -24,8 +24,7 @@ function Crossword(props) {
     }, [])
 
     const headers = {
-        'Content-type': 'application/json',
-        'Authorization': localStorage.getItem('access_token')
+        'Authorization': 'Bearer ' + localStorage.getItem('access_token')
     }
 
     const crosswordCorrectHandler = () => {
@@ -40,7 +39,6 @@ function Crossword(props) {
             .then((res) => {
                 console.log(typeof res.data.correct);
                 console.log(res.data.correct === true);
-                
             }).catch(err => {
                 console.log(err);
             });
@@ -59,7 +57,7 @@ function Crossword(props) {
                     <HowToPlayText>Fill the crossword using the hints.</HowToPlayText>
                     <Line width={"100%"}/>
                     <CrosswordContainer>
-                        <ReactCrossword onCrosswordCorrect={crosswordCorrectHandler} data={myData} theme={{gridBackground:'rgb(0,0,0,0)', numberColor:'rgba(0,0,0,0.7)', focusBackground:'#c548ff', highlightBackground:'#d77aff'}}/>
+                        <ReactCrossword onCrosswordCorrect={crosswordCorrectHandler} data={crosswordBoard} theme={{gridBackground:'rgb(0,0,0,0)', numberColor:'rgba(0,0,0,0.7)', focusBackground:'#c548ff', highlightBackground:'#d77aff'}}/>
                     </CrosswordContainer>
                 </QuestionContainer>
             </div>
