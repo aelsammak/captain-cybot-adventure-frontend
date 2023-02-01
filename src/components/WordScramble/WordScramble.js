@@ -46,8 +46,8 @@ function WordScramble(props) {
             })
                 .then((res) => {
                     console.log(typeof res.data.correct);
-                    console.log(res.data.correct == true);
-                    if (res.data.correct == true) {
+                    console.log(res.data.correct === true);
+                    if (res.data.correct === true) {
                         setShowError(false);
                         setStarsAchieved(res.data.stars);
                         setIsCompleted(true);
@@ -69,7 +69,7 @@ function WordScramble(props) {
             <IconButton onClick={() => {navigate("/menu")}}>
                     <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
             </IconButton>
-            {isCompleted && <SuccessPopup questionNumber={questionNumber} starsGained={starsAchieved} redirect={"/"} />}
+            {isCompleted && <SuccessPopup questionNumber={questionNumber} starsGained={starsAchieved} redirect={"/" + props.planet + "/levels"} planet={props.planet} />}
             <Card>
             <div>
             <QuestionContainer>

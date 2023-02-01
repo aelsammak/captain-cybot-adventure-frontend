@@ -45,7 +45,7 @@ function Worlds() {
             </TitleContainer>
             <PlanetsContainer>
                 <PlanetsRow>
-                    <Link to={"/levels"} state={{ planet: 0 }}>
+                    <Link to={"/earth/levels"} state={{ planet: 0 }}>
                         <Planet>
                             <img src={earth} alt="Earth" className={"zoom-box"} style={{ width: "45%", height: "70%" }} />
                             <PlanetDescription>
@@ -53,7 +53,7 @@ function Worlds() {
                             </PlanetDescription>
                         </Planet>
                     </Link>
-                    <Link to={`${world1Lock ? "" : "/levels"}`} state={{ planet: 1 }}>
+                    <Link to={`${world1Lock ? "" : "/mars/levels"}`} state={{ planet: 1 }}>
                         <Planet>
                             <img src={mars} alt="Mars" className={`${world1Lock ? "gray" : "zoom-box "}`} style={{ width: "45%", height: "70%" }} />
                             <PlanetDescription>
@@ -64,7 +64,7 @@ function Worlds() {
                     </Link>
                 </PlanetsRow>
                 <PlanetsRow>
-                    <Link to={`${world2Lock ? "" : "/levels"}`} state={{ planet: 2 }}>
+                    <Link to={`${world2Lock ? "" : "/neptune/levels"}`} state={{ planet: 2 }}>
                         <Planet style={{ clear: "both" }}>
                             <img src={neptune} alt="Neptune" className={`${world2Lock ? "gray" : "zoom-box "}`} style={{ width: "70%", height: "70%" }} />
                             <PlanetDescription>
@@ -73,7 +73,7 @@ function Worlds() {
                             </PlanetDescription>
                         </Planet>
                     </Link>
-                    <Link to={`${world3Lock ? "" : "/levels"}`} state={{ planet: 3 }}>
+                    <Link to={`${world3Lock ? "" : "/jupiter/levels"}`} state={{ planet: 3 }}>
                         <Planet>
                             <img src={jupiter} alt="Jupiter" className={`${world3Lock ? "gray" : "zoom-box "}`} style={{ width: "85%", height: "70%" }} />
                             <PlanetDescription>
