@@ -8,6 +8,14 @@ import Worlds from "./pages/Worlds/Worlds.js";
 import Menu from "./pages/Menu/Menu.js";
 import Customization from './pages/Customization/Customization.js';
 import Planet from './components/Planet/Planet';
+import EarthImg from "./images/Earth.png";
+import MarsImg from "./images/Mars.png";
+import EarthLevel1 from './constants/EarthSpeech/EarthLevel1';
+import EarthLevel2 from './constants/EarthSpeech/EarthLevel2';
+import EarthLevel3 from './constants/EarthSpeech/EarthLevel3';
+import EarthLevel4 from './constants/EarthSpeech/EarthLevel4';
+import EarthQuizIntro from './constants/EarthSpeech/EarthQuizIntro';
+import EarthQuizOutro from './constants/EarthSpeech/EarthQuizOutro';
 
 
 function App() {
@@ -22,8 +30,8 @@ function App() {
             <>
                 <Route path="/menu" exact element={<Menu />} />
                 <Route path="/worlds" exact element={<Worlds />} />
-                <Route path="/earth/*" element={<Planet planet={"EARTH"} />} />
-                <Route path="/mars/*" element={<Planet planet={"MARS"} />} />
+                <Route path="/earth/*" element={<Planet planet={"EARTH"} firstLevelMsgs={EarthLevel1} secondLevelMsgs={EarthLevel2} thirdLevelMsgs={EarthLevel3} fourthLevelMsgs={EarthLevel4} quizIntroMsgs={EarthQuizIntro} quizOutroMsgs={EarthQuizOutro} img={EarthImg} />} />
+                <Route path="/mars/*" element={<Planet planet={"MARS"} img={MarsImg} />} />
                 <Route path="/neptune/*" element={<Planet planet={"NEPTUNE"} />} />
                 <Route path="/jupiter/*" element={<Planet planet={"JUPITER"} />} />
                 <Route path="/customization" exact element={<Customization />} />

@@ -23,13 +23,17 @@ export const MiddleContainer = styled.div`
 
 export const BottomContainer = styled.div`
     width: 100%;
-    height: 39%;
+    height: 37%;
     display: grid;
     grid-template-columns: 35% 65%;
 `
 
 export const PlanetImg = styled.img`
     width: 18%; 
+`
+
+export const RocketShip = styled.img`
+    height: 115%; 
 `
 
 export const CybotStanceImg = styled.img`

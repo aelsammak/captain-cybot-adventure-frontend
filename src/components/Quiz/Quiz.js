@@ -75,7 +75,7 @@ function Quiz(props) {
                 <QuizScore>
                     {score * props.questions.length / 100} out of {props.questions.length} correct - ({score}%)
                 </QuizScore>
-                <ContinueBtn onClick={() => {navigate("/worlds")}}>CONTINUE</ContinueBtn>
+                <ContinueBtn onClick={() => {navigate("/"+props.planet+"/speech/6")}}>CONTINUE</ContinueBtn>
               </QuizScoreContainer>
           ) : (
               <QuizCard>

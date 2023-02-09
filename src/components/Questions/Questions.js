@@ -90,8 +90,7 @@ function Questions(props) {
 
                 case 'CROSSWORD':
                     setBoard(res.data.resData);
-                    /* TODO */
-                    setCrosswordAnswers(['software', 'norton', 'replicate', 'creeper', 'computer', 'email', 'malware', 'viruses']);
+                    setCrosswordAnswers(res.data.answers);
                     setIsCrossword(true);
                     break;
 
