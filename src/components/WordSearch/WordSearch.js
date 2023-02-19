@@ -19,12 +19,31 @@ function WordSearch(props) {
     const [direction, setDirection] = useState("");
     const [lettersInWordSelected, updateLettersInWordSelected] = useState([]);
     const [lettersDisabled, updateLettersDisabled] = useState([]);
+    const [startTime, setStartTime] = useState(0);
+    const [starsAchieved, setStarsAchieved] = useState(3);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setStartTime(Math.floor(Date.now() / 1000));
+    }, [])
 
     useEffect(() => {
         // Word has been found
         if (props.wordBank.includes(wordSelected)) {
             let indexOfWord = props.wordBank.indexOf(wordSelected);
+            updateWordsFound(wordsFound => wordsFound.concat(indexOfWord));
+            setWordSelected("");
+            setLetterSelectedCoordinate({rowIndex: -1, colIndex: -1});
+            setDirection("");
+            updateLettersDisabled(lettersDisabled => lettersDisabled.concat(lettersInWordSelected));
+            updateLettersInWordSelected([]);
+            console.log(wordsFound);
+        }
+
+        // Word has been found but, letters are selected in the opposite order
+        let reversedWordSelected =  reverseStr(wordSelected);
+        if (props.wordBank.includes(reversedWordSelected)) {
+            let indexOfWord = props.wordBank.indexOf(reversedWordSelected);
             updateWordsFound(wordsFound => wordsFound.concat(indexOfWord));
             setWordSelected("");
             setLetterSelectedCoordinate({rowIndex: -1, colIndex: -1});
@@ -40,19 +59,29 @@ function WordSearch(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [wordSelected])
 
+    const reverseStr = (str) => {
+        // empty string
+        let reversedStr = "";
+        for (let i = str.length - 1; i >= 0; i--) {
+            reversedStr += str[i];
+        }
+        return reversedStr;
+    }
+
     const headers = {
-        'Content-type': 'application/json',
-        'Authorization': localStorage.getItem('access_token')
+        'Authorization': "Bearer " + localStorage.getItem('access_token')
     }
 
     const wordSearchCompleted = () => {
         const answer = {
-            answers: props.wordBank
+            answers: props.wordBank,
+            timeTaken: (Math.floor(Date.now() / 1000) - startTime)
         }
         axios.post(('http://localhost:8080/api/v0/questions?planet='+props.planet+'&questionNumber='+props.questionNumber), answer, {
             headers: headers
         }).then((res) => {
             console.log(res);
+            setStarsAchieved(res.data.stars);
         }).catch(err => {
             console.log(err);
         });
@@ -63,7 +92,7 @@ function WordSearch(props) {
             <IconButton onClick={() => {navigate("/menu")}}>
                 <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
             </IconButton>
-            {wordsFound.length === props.wordBank.length && <SuccessPopup questionNumber={4} starsGained={3} redirect={"/"} />}
+            {wordsFound.length === props.wordBank.length && <SuccessPopup questionNumber={props.questionNumber} starsGained={starsAchieved} redirect={"/" + props.planet + "/levels"} planet={props.planet} />}
             <QuestionContainer>
                 <QuestionTypeText>Question {props.questionNumber}: Word Search</QuestionTypeText>
                 <HowToPlayText>Find all of the words hidden in the grid! Click on the letters to form a word.</HowToPlayText>

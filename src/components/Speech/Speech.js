@@ -2,45 +2,63 @@ import React, {useState} from 'react';
 import { BackgroundImg } from '../../pages/SignIn/SignInElements';
 import img from "../../images/Standard_Background.png"
 import img2 from "../../images/CybotStance1.png"
-import { BottomContainer, CybotStanceImg, MiddleContainer, NextBtn, PlanetImg, TextBubble, TopContainer, WorldLabel} from './SpeechElements';
+import { BottomContainer, CybotStanceImg, MiddleContainer, NextBtn, PlanetImg, RocketShip, TextBubble, TopContainer, WorldLabel} from './SpeechElements';
 import { Line } from '../../pages/SignUp/SignUpElements';
 import HomeIcon from '@mui/icons-material/Home';
 import IconButton from '@mui/material/IconButton';
 import { useNavigate } from 'react-router-dom';
+import GIF from "../../images/Rocket_Ship.gif";
 
 function Speech(props) {
     const navigate = useNavigate();
     const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
 
     const handleClick = () => {
-        console.log(props.messages)
+        console.log(props.messages);
         if (currentMessageIndex < props.messages.length - 1) {
             setCurrentMessageIndex(currentMessageIndex + 1)
         } else {
             /* TODO: navigate to the lvl 1 of the world */
             setCurrentMessageIndex(0);
+            if (props.setIsNewUser !== undefined) {
+                props.setIsNewUser(false);
+            }
+            if (props.redirect !== undefined) {
+                navigate(props.redirect);
+            }
         }
     };
 
     return (
         <BackgroundImg img={img}>
-            <TopContainer>
-                <IconButton onClick={() => {navigate("/menu")}}>
-                    <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
-                </IconButton>
-                <WorldLabel><mark style={{backgroundColor: '#161616', color: 'white'}}>{props.title}</mark></WorldLabel>
-                <Line width={"25%"}/>
-            </TopContainer>
 
-            <MiddleContainer><PlanetImg src={props.planetImg} alt=""></PlanetImg></MiddleContainer>
+            {!props.isNewUser && <TopContainer>
+                                    <IconButton onClick={() => {navigate("/menu")}}>
+                                        <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
+                                    </IconButton>
+                                    <WorldLabel><mark style={{backgroundColor: '#161616', color: 'white'}}>{props.title}</mark></WorldLabel>
+                                    <Line width={"25%"}/>
+                                </TopContainer>}
+            {!props.isNewUser && <MiddleContainer><PlanetImg src={props.planetImg} alt=""></PlanetImg></MiddleContainer>}
+            {!props.isNewUser && <BottomContainer>
+                                    <CybotStanceImg src={img2} alt=""></CybotStanceImg> 
+                                    <TextBubble>
+                                        <div>{props.messages[currentMessageIndex]}</div>
+                                        <div style={{margin: "auto"}}><NextBtn onClick={handleClick}>NEXT</NextBtn></div>
+                                    </TextBubble>
+                                </BottomContainer>}
 
-            <BottomContainer>
-                <CybotStanceImg src={img2} alt=""></CybotStanceImg> 
-                <TextBubble>
-                    <div>{props.messages[currentMessageIndex]}</div>
-                    <div style={{margin: "auto"}}><NextBtn onClick={handleClick}>NEXT</NextBtn></div>
-                </TextBubble>
-            </BottomContainer>
+            {props.isNewUser && <IconButton onClick={() => {navigate("/menu")}}>
+                                    <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
+                                </IconButton>}
+            {props.isNewUser && <MiddleContainer><RocketShip src={GIF} alt=""></RocketShip></MiddleContainer>}
+            {props.isNewUser && <BottomContainer style={{"margin-top": "3%"}}>
+                                    <CybotStanceImg src={img2} alt=""></CybotStanceImg> 
+                                    <TextBubble>
+                                        <div>{props.messages[currentMessageIndex]}</div>
+                                        <div style={{margin: "auto"}}><NextBtn onClick={handleClick}>NEXT</NextBtn></div>
+                                    </TextBubble>
+                                </BottomContainer>}
             
         </BackgroundImg>
     );
