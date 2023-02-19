@@ -13,6 +13,7 @@ function Crossword(props) {
     const crosswordBoard = props.board;
     const [isCrosswordCompleted, setIsCrosswordCompleted] = useState(false);
     const [startTime, setStartTime] = useState(0);
+    const [starsAchieved, setStarsAchieved] = useState(3);
 
     /* Unpack props */
     //const crosswordData = props.crosswordData;
@@ -39,18 +40,18 @@ function Crossword(props) {
             .then((res) => {
                 console.log(typeof res.data.correct);
                 console.log(res.data.correct === true);
+                setStarsAchieved(res.data.stars);
             }).catch(err => {
                 console.log(err);
             });
     }
 
     return (
-        
         <BackgroundImg img={img} >
             <IconButton onClick={() => {navigate("/menu")}}>
                     <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
             </IconButton>
-            {isCrosswordCompleted && <SuccessPopup questionNumber={questionNumber} starsGained={3} redirect={"/"} />}
+            {isCrosswordCompleted && <SuccessPopup questionNumber={questionNumber} starsGained={starsAchieved} redirect={"/" + props.planet + "/levels"} planet={props.planet} />}
             <div>
                 <QuestionContainer>
                     <QuestionTypeText>Question {questionNumber}: Crossword</QuestionTypeText>

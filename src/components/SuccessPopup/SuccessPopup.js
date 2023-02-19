@@ -10,6 +10,18 @@ function SuccessPopup(props) {
 
     const navigate = useNavigate();
 
+    const toComponent = (pathname, planet) => {
+        if (planet === 'EARTH') {
+            navigate(pathname, {state: { planet: 0 }});
+        } else if (planet === 'MARS') {
+            navigate(pathname, {state: { planet: 1 }});
+        } else if (planet === 'NEPTUNE') {
+            navigate(pathname, {state: { planet: 2 }});
+        } else if (planet === 'JUPITER') {
+            navigate(pathname, {state: { planet: 3 }});
+        }
+    }
+
     return (
         <Popup open={true} position="center" repositionOnResize modal>
             <PopUpContainer>
@@ -18,7 +30,7 @@ function SuccessPopup(props) {
                 {props.starsGained === 3 && <StarsImg src={threeStar} alt=""/>}
                 <h1 style={{fontWeight: "600", paddingBottom: "1%"}}>CONGRATULATIONS</h1>
                 <h4>YOU HAVE COMPLETED QUESTION {props.questionNumber}!</h4>
-                <ContinueBtn onClick={() => navigate(props.redirect)}>CONTINUE</ContinueBtn>
+                <ContinueBtn onClick={() => toComponent(props.redirect, props.planet)}>CONTINUE</ContinueBtn>
             </PopUpContainer>
         </Popup>
     );

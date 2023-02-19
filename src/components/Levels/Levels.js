@@ -18,10 +18,9 @@ import dline from "../../images/Dashed_Line.png";
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-function Levels() {
+function Levels(props) {
     const planets = [earth, mars, neptune, jupiter]
     const location = useLocation();
-    const { planet } = location.state;
     const [isLoading, setLoading] = useState(true);
     const [playerInfo, setPlayerInfo] = useState();
     const navigate = useNavigate();
@@ -30,8 +29,9 @@ function Levels() {
         "lv2Img": null,
         "lv3Img": null,
         "lv4Img": null,
-        "quizImg": planets[planet]
+        "quizImg": planets[location.state.planet]
     }
+
     useEffect(() => {
         axios.get('http://localhost:8080/api/v0/users/' + localStorage.getItem("username"),
             {
@@ -39,13 +39,12 @@ function Levels() {
                     'Authorization': 'Bearer ' + localStorage.getItem("access_token")
                 }
             }
-        )
-            .then((res) => {
-                setPlayerInfo(res.data.worlds[planet]);
-                setLoading(false);
-            }).catch(err => {
-                console.log(err);
-            });
+        ).then((res) => {
+            setPlayerInfo(res.data.worlds[location.state.planet]);
+            setLoading(false);
+        }).catch(err => {
+            console.log(err);
+        });
     }, []);
 
     if (isLoading) {
@@ -83,7 +82,7 @@ function Levels() {
             </TitleContainer>
             <LevelsContainer>
                 <Hologram style={{ width: "13vw", marginTop: "17%" }}>
-                    <img onClick={() => navigate(`/menu`)} to="/menu" src={levelsImages[0]} alt="holoLv1" className={`${playerInfo.levelsCompleted < 0 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
+                    <img onClick={() => navigate("/"+props.planet+"/speech/1")} src={levelsImages[0]} alt="holoLv1" className={`${playerInfo.levelsCompleted < 0 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
                     <LevelDescription>
                         {playerInfo.levelsCompleted < 0 ? <LockIcon style={{ width: "25%", height: "10%", fill: "white" }} /> : null}
                         <LevelText>LEVEL 1</LevelText>
@@ -93,7 +92,7 @@ function Levels() {
                     <img src={dline} alt="dline" className={`${playerInfo.levelsCompleted < 1 ? "filter-gray" : "dashed"}`} style={{ left: "11%", height: "12vw", marginTop: "15%", transform: "rotate(-20deg)", position: "absolute" }} />
                 </Hologram>
                 <Hologram style={{ width: "13vw", marginLeft: "7.1%" }}>
-                    <img onClick={() => navigate(`/menu`)} src={levelsImages[1]} alt="holoLv2" className={`${playerInfo.levelsCompleted < 1 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
+                    <img onClick={() => navigate("/"+props.planet+"/speech/2")} src={levelsImages[1]} alt="holoLv2" className={`${playerInfo.levelsCompleted < 1 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
                     <LevelDescription>
                         {playerInfo.levelsCompleted < 1 ? <LockIcon style={{ width: "22%", height: "10%", fill: "white" }} /> : null}
                         <LevelText>LEVEL 2</LevelText>
@@ -103,7 +102,7 @@ function Levels() {
                     <img src={dline} alt="dline" className={`${playerInfo.levelsCompleted < 2 ? "filter-gray flipped" : "dashed flipped"}`} style={{ left: "32%", height: "12vw", marginTop: "14.7%", position: "absolute" }} />
                 </Hologram>
                 <Hologram style={{ width: "13vw", marginTop: "17%", marginLeft: "6.5%" }}>
-                    <img onClick={() => navigate(`/menu`)} src={levelsImages[2]} alt="holoLv3" className={`${playerInfo.levelsCompleted < 2 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
+                    <img onClick={() => navigate("/"+props.planet+"/speech/3")} src={levelsImages[2]} alt="holoLv3" className={`${playerInfo.levelsCompleted < 2 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
                     <LevelDescription>
                         {playerInfo.levelsCompleted < 2 ? <LockIcon style={{ width: "22%", height: "10%", fill: "white" }} /> : null}
                         <LevelText>LEVEL 3</LevelText>
@@ -113,7 +112,7 @@ function Levels() {
                     <img src={dline} alt="dline" className={`${playerInfo.levelsCompleted < 3 ? "filter-gray" : "dashed"}`} style={{ left: "53%", height: "12vw", marginTop: "15%", transform: "rotate(-20deg)", position: "absolute" }} />
                 </Hologram>
                 <Hologram style={{ width: "13vw", marginLeft: "6.5%" }}>
-                    <img onClick={() => navigate(`/menu`)} src={levelsImages[3]} alt="holoLv4" className={`${playerInfo.levelsCompleted < 3 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
+                    <img onClick={() => navigate("/"+props.planet+"/speech/4")} src={levelsImages[3]} alt="holoLv4" className={`${playerInfo.levelsCompleted < 3 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
                     <LevelDescription>
                         {playerInfo.levelsCompleted < 3 ? <LockIcon style={{ width: "22%", height: "10%", fill: "white" }} /> : null}
                         <LevelText>LEVEL 4</LevelText>
@@ -123,9 +122,9 @@ function Levels() {
                     <img src={dline} alt="dline" className={`${playerInfo.levelsCompleted < 4 ? "filter-gray flipped" : "dashed flipped"}`} style={{ left: "74%", height: "12vw", marginTop: "14.5%", position: "absolute" }} />
                 </Hologram>
                 <Hologram>
-                    <QuizScore className={"quizText" + planet} style={playerInfo.quizScore < 0 ? { visibility: "hidden" } : null}>{playerInfo.quizScore}%</QuizScore>
-                    <img onClick={() => navigate(`/menu`)} src={levelsImages.quizImg} alt="quizPlanet" className={"planetStyle" + planet + " " + `${playerInfo.levelsCompleted < 4 ? "gray" : "zoom-box"}`} />
-                    <LevelDescription className={`${playerInfo.levelsCompleted < 4 ? "lockedPlanetText" + planet : "activePlanetText" + planet}`}>
+                    <QuizScore className={"quizText" + location.state.planet} style={playerInfo.quizScore < 0 ? { visibility: "hidden" } : null}>{playerInfo.quizScore}%</QuizScore>
+                    <img onClick={() => navigate("/"+props.planet+"/speech/5")} src={levelsImages.quizImg} alt="quizPlanet" className={"planetStyle" + location.state.planet + " " + `${playerInfo.levelsCompleted < 4 ? "gray" : "zoom-box"}`} />
+                    <LevelDescription className={`${playerInfo.levelsCompleted < 4 ? "lockedPlanetText" + location.state.planet : "activePlanetText" + location.state.planet}`}>
                         {playerInfo.levelsCompleted < 4 ? <LockIcon style={{ fontSize: '3.459vw', fill: "white" }} /> : null}
                         <LevelText>QUIZ</LevelText>
                     </LevelDescription>

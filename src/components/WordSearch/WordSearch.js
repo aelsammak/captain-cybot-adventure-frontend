@@ -20,6 +20,7 @@ function WordSearch(props) {
     const [lettersInWordSelected, updateLettersInWordSelected] = useState([]);
     const [lettersDisabled, updateLettersDisabled] = useState([]);
     const [startTime, setStartTime] = useState(0);
+    const [starsAchieved, setStarsAchieved] = useState(3);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -80,6 +81,7 @@ function WordSearch(props) {
             headers: headers
         }).then((res) => {
             console.log(res);
+            setStarsAchieved(res.data.stars);
         }).catch(err => {
             console.log(err);
         });
@@ -90,7 +92,7 @@ function WordSearch(props) {
             <IconButton onClick={() => {navigate("/menu")}}>
                 <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
             </IconButton>
-            {wordsFound.length === props.wordBank.length && <SuccessPopup questionNumber={4} starsGained={3} redirect={"/"} />}
+            {wordsFound.length === props.wordBank.length && <SuccessPopup questionNumber={props.questionNumber} starsGained={starsAchieved} redirect={"/" + props.planet + "/levels"} planet={props.planet} />}
             <QuestionContainer>
                 <QuestionTypeText>Question {props.questionNumber}: Word Search</QuestionTypeText>
                 <HowToPlayText>Find all of the words hidden in the grid! Click on the letters to form a word.</HowToPlayText>

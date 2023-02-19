@@ -77,7 +77,7 @@ function GuessTheImage(props) {
             <IconButton onClick={() => {navigate("/menu")}}>
                     <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
             </IconButton>
-            {isCompleted && <SuccessPopup questionNumber={questionNumber} starsGained={starsAchieved} redirect={"/"} />}
+            {isCompleted && <SuccessPopup questionNumber={questionNumber} starsGained={starsAchieved} redirect={"/" + props.planet + "/levels"} planet={props.planet} />}
             <div>
             <QuestionContainer>
                 <div>
@@ -86,7 +86,7 @@ function GuessTheImage(props) {
                 <Line width={"100%"}/>
                 </div>
                 <div>
-                <QuestionImg src={require(`../../images/${props.filename}`)}></QuestionImg>
+                {props.filename && <QuestionImg src={require(`../../images/${props.filename}`)} alt="LOADING" />}
                 </div>
                 <form onSubmit={submitHandler}>
                     <div>
