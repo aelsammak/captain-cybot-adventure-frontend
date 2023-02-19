@@ -20,7 +20,7 @@ export const QuestionTypeText = styled.h1`
     padding-bottom: 3.5%;
     color: #fff;
     font-weight: 800;
-    font-size: 2.604vw;
+    font-size: 1.5vw;
 `
 
 export const HowToPlayText = styled.h1`

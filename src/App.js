@@ -17,6 +17,7 @@ import WordSearch from './components/WordSearch/WordSearch';
 import WordScramble from './components/WordScramble/WordScramble';
 import GuessTheImage from './components/GuessTheImage/GuessTheImage';
 import Quiz from './components/Quiz/Quiz';
+import Leaderboard from './pages/Leaderboard/Leaderboard.js';
 
 function App() {
 
@@ -132,6 +133,7 @@ const questions = [
             <Route path="/w" exact element={<WordSearch planet={"EARTH"} questionNumber={4} boardLetters={boardLetters} wordBank={wordBank} />} />
             <Route path="/crossword" exact element={<Crossword questionNumber='3' data={myData} planet={"EARTH"} />} />
             <Route path="/quiz" exact element={<Quiz questions={questions} planet={"EARTH"} />} />
+            <Route path="/leaderboard" exact element={<Leaderboard index='1'/>} />
             {localStorage.getItem("username") && 
             <>
               <Route path="/menu" exact element={<Menu />} />

@@ -9,12 +9,12 @@ function Menu() {
 
     const logout = () => {
         localStorage.clear();
-        window.location.reload(false);
+        //window.location.reload(false);
     }
 
     return (
         <BackgroundImg img={background} >
-            <Link to="/menu">
+            <Link to="/signin">
                 <LogoutIcon onClick={logout} className="buttonClick" style={{ color: 'white', fontSize: '5vw', paddingLeft: '1%', paddingTop: '0.5%' }} />
             </Link>
             <NameContainer>
@@ -34,7 +34,9 @@ function Menu() {
                 <Link to="/customization">
                     <MenuBtn style={{ backgroundColor: "#ff1515" }}>CUSTOMIZATION</MenuBtn>
                 </Link>
-                <MenuBtn style={{ backgroundColor: "#15e1ff" }}>LEADERBOARD</MenuBtn>
+                <Link to="/leaderboard">
+                    <MenuBtn style={{ backgroundColor: "#15e1ff" }}>LEADERBOARD</MenuBtn>
+                </Link>
                 <MenuBtn style={{ backgroundColor: "#ffe715" }}>ABOUT</MenuBtn>
             </ButtonsContainer>
         </BackgroundImg>
