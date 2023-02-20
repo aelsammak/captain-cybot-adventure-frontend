@@ -4,8 +4,8 @@ export const QuestionContainer = styled.div`
     position: absolute;
     top: 40%;
     left: 50%;
-    width: 40%;
-    height: 50%;
+    width: 45vw;
+    height: 30vw;
     transform: translate(-50%, -50%);
     border-radius: 1.563vw;
     background: #000A;

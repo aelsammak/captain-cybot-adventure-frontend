@@ -49,7 +49,6 @@ export const InputDiv = styled.div`
 
 export const SubmitBtn = styled.button`
     margin-top: 5px;
-    margin-bottom: 0px;
     padding: 0.625vw 2.604vw;
     width: 100%;
     display: inline-block;
@@ -99,7 +98,7 @@ export const ErrorContainer = styled.div`
 
 export const Wrapper = styled.div`
   margin: auto;
-  padding-bottom: 20%;
+  padding-bottom: 3vw;
   text-align: center;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
     Arial sans-serif;

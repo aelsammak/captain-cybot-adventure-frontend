@@ -20,6 +20,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 function Levels(props) {
     const planets = [earth, mars, neptune, jupiter]
+    const planetsStrings = ["EARTH", "MARS", "NEPTUNE", "JUPITER"]
     const location = useLocation();
     const [isLoading, setLoading] = useState(true);
     const [playerInfo, setPlayerInfo] = useState();
@@ -40,7 +41,11 @@ function Levels(props) {
                 }
             }
         ).then((res) => {
-            setPlayerInfo(res.data.worlds[location.state.planet]);
+            res.data.worlds.forEach((world, index) => {
+                if (world.planet === planetsStrings[location.state.planet]) {
+                    setPlayerInfo(world);
+                }
+            });
             setLoading(false);
         }).catch(err => {
             console.log(err);
@@ -50,23 +55,17 @@ function Levels(props) {
     if (isLoading) {
         return <div className="App">Loading...</div>;
     } else {
-        /*playerInfo.levels[0].stars = 1;
-        playerInfo.levels[1].stars = 1;
-        playerInfo.levels[2].stars = 2;
-        playerInfo.levels[3].stars = 3;
-        playerInfo.levelsCompleted = 4;
-        playerInfo.quizScore = 100;*/
         for (let i = 0; i < playerInfo.levels.length; i++) {
-            if (playerInfo.levelsCompleted < i) { //have not reached the level
-                levelsImages[i] = defaultHolo;
-            } else if (playerInfo.levels[i].stars === 0 && playerInfo.levelsCompleted === i) { //current level
-                levelsImages[i] = holoWithCybot;
+            if (playerInfo.levels[i].levelNumber > playerInfo.levelsCompleted + 1) { //have not reached the level
+                levelsImages[playerInfo.levels[i].levelNumber] = defaultHolo;
+            } else if (playerInfo.levels[i].stars === 0 && playerInfo.levelsCompleted + 1 === playerInfo.levels[i].levelNumber) { //current level
+                levelsImages[playerInfo.levels[i].levelNumber] = holoWithCybot;
             } else if (playerInfo.levels[i].stars === 1) {
-                levelsImages[i] = holoStar1;
+                levelsImages[playerInfo.levels[i].levelNumber] = holoStar1;
             } else if (playerInfo.levels[i].stars === 2) {
-                levelsImages[i] = holoStar2;
+                levelsImages[playerInfo.levels[i].levelNumber] = holoStar2;
             } else if (playerInfo.levels[i].stars === 3) {
-                levelsImages[i] = holoStar3;
+                levelsImages[playerInfo.levels[i].levelNumber] = holoStar3;
             }
         }
     }
@@ -82,7 +81,7 @@ function Levels(props) {
             </TitleContainer>
             <LevelsContainer>
                 <Hologram style={{ width: "13vw", marginTop: "17%" }}>
-                    <img onClick={() => navigate("/"+props.planet+"/speech/1")} src={levelsImages[0]} alt="holoLv1" className={`${playerInfo.levelsCompleted < 0 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
+                    <img onClick={() => navigate("/" + props.planet + "/speech/1")} src={levelsImages[1]} alt="holoLv1" className={`${playerInfo.levelsCompleted < 0 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
                     <LevelDescription>
                         {playerInfo.levelsCompleted < 0 ? <LockIcon style={{ width: "25%", height: "10%", fill: "white" }} /> : null}
                         <LevelText>LEVEL 1</LevelText>
@@ -92,7 +91,7 @@ function Levels(props) {
                     <img src={dline} alt="dline" className={`${playerInfo.levelsCompleted < 1 ? "filter-gray" : "dashed"}`} style={{ left: "11%", height: "12vw", marginTop: "15%", transform: "rotate(-20deg)", position: "absolute" }} />
                 </Hologram>
                 <Hologram style={{ width: "13vw", marginLeft: "7.1%" }}>
-                    <img onClick={() => navigate("/"+props.planet+"/speech/2")} src={levelsImages[1]} alt="holoLv2" className={`${playerInfo.levelsCompleted < 1 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
+                    <img onClick={playerInfo.levelsCompleted > 0 ? () => navigate("/" + props.planet + "/speech/2") : null} src={levelsImages[2]} alt="holoLv2" className={`${playerInfo.levelsCompleted < 1 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
                     <LevelDescription>
                         {playerInfo.levelsCompleted < 1 ? <LockIcon style={{ width: "22%", height: "10%", fill: "white" }} /> : null}
                         <LevelText>LEVEL 2</LevelText>
@@ -102,7 +101,7 @@ function Levels(props) {
                     <img src={dline} alt="dline" className={`${playerInfo.levelsCompleted < 2 ? "filter-gray flipped" : "dashed flipped"}`} style={{ left: "32%", height: "12vw", marginTop: "14.7%", position: "absolute" }} />
                 </Hologram>
                 <Hologram style={{ width: "13vw", marginTop: "17%", marginLeft: "6.5%" }}>
-                    <img onClick={() => navigate("/"+props.planet+"/speech/3")} src={levelsImages[2]} alt="holoLv3" className={`${playerInfo.levelsCompleted < 2 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
+                    <img onClick={playerInfo.levelsCompleted > 1 ? () => navigate("/" + props.planet + "/speech/3") : null} src={levelsImages[3]} alt="holoLv3" className={`${playerInfo.levelsCompleted < 2 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
                     <LevelDescription>
                         {playerInfo.levelsCompleted < 2 ? <LockIcon style={{ width: "22%", height: "10%", fill: "white" }} /> : null}
                         <LevelText>LEVEL 3</LevelText>
@@ -112,7 +111,7 @@ function Levels(props) {
                     <img src={dline} alt="dline" className={`${playerInfo.levelsCompleted < 3 ? "filter-gray" : "dashed"}`} style={{ left: "53%", height: "12vw", marginTop: "15%", transform: "rotate(-20deg)", position: "absolute" }} />
                 </Hologram>
                 <Hologram style={{ width: "13vw", marginLeft: "6.5%" }}>
-                    <img onClick={() => navigate("/"+props.planet+"/speech/4")} src={levelsImages[3]} alt="holoLv4" className={`${playerInfo.levelsCompleted < 3 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
+                    <img onClick={playerInfo.levelsCompleted > 2 ? () => navigate("/" + props.planet + "/speech/4") : null} src={levelsImages[4]} alt="holoLv4" className={`${playerInfo.levelsCompleted < 3 ? "gray" : "zoom-box"}`} style={{ height: "14vw" }} />
                     <LevelDescription>
                         {playerInfo.levelsCompleted < 3 ? <LockIcon style={{ width: "22%", height: "10%", fill: "white" }} /> : null}
                         <LevelText>LEVEL 4</LevelText>
@@ -123,7 +122,7 @@ function Levels(props) {
                 </Hologram>
                 <Hologram>
                     <QuizScore className={"quizText" + location.state.planet} style={playerInfo.quizScore < 0 ? { visibility: "hidden" } : null}>{playerInfo.quizScore}%</QuizScore>
-                    <img onClick={() => navigate("/"+props.planet+"/speech/5")} src={levelsImages.quizImg} alt="quizPlanet" className={"planetStyle" + location.state.planet + " " + `${playerInfo.levelsCompleted < 4 ? "gray" : "zoom-box"}`} />
+                    <img onClick={playerInfo.levelsCompleted > 3 ? () => navigate("/" + props.planet + "/speech/5") : null} src={levelsImages.quizImg} alt="quizPlanet" className={"planetStyle" + location.state.planet + " " + `${playerInfo.levelsCompleted < 4 ? "gray" : "zoom-box"}`} />
                     <LevelDescription className={`${playerInfo.levelsCompleted < 4 ? "lockedPlanetText" + location.state.planet : "activePlanetText" + location.state.planet}`}>
                         {playerInfo.levelsCompleted < 4 ? <LockIcon style={{ fontSize: '3.459vw', fill: "white" }} /> : null}
                         <LevelText>QUIZ</LevelText>

@@ -52,7 +52,7 @@ function Speech(props) {
                                     <HomeIcon style={{color: 'white', fontSize: '3.459vw', paddingLeft: '1%', paddingTop: '0.5%'}} />
                                 </IconButton>}
             {props.isNewUser && <MiddleContainer><RocketShip src={GIF} alt=""></RocketShip></MiddleContainer>}
-            {props.isNewUser && <BottomContainer style={{"margin-top": "3%"}}>
+            {props.isNewUser && <BottomContainer style={{marginTop: "3%"}}>
                                     <CybotStanceImg src={img2} alt=""></CybotStanceImg> 
                                     <TextBubble>
                                         <div>{props.messages[currentMessageIndex]}</div>
