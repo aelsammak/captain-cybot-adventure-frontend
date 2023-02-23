@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BackgroundImg, Line, SignInContainer, TitleContainer, LevelSelectionText, Row, Column, BackArrowContainer, ForwardArrowContainer } from "./LeaderboardElements.js";
+import { BackgroundImg, Line, LeaderboardContainer, TitleContainer, LeaderboardText, Row, Column, BackArrowContainer, ForwardArrowContainer } from "./LeaderboardElements.js";
 import img from "../../images/Login_Signup.png"
 import axios from 'axios';
 import HomeIcon from '@mui/icons-material/Home';
@@ -32,7 +32,7 @@ function Leaderboard() {
     if (isLoading) {
         return <div className="App">Loading...</div>;
     } else {
-        if(leaderboardInfo[leaderboardInfo.length - 1].username === localStorage.getItem("username") && leaderboardInfo[leaderboardInfo.length - 1].position < leaderboardInfo[0].position){
+        if (leaderboardInfo[leaderboardInfo.length - 1].username === localStorage.getItem("username") && leaderboardInfo[leaderboardInfo.length - 1].position < leaderboardInfo[0].position) {
             leaderboardInfo.unshift(leaderboardInfo.pop())
         }
     }
@@ -61,7 +61,7 @@ function Leaderboard() {
                 </BackArrowContainer> : null
             }
             <TitleContainer>
-                <LevelSelectionText>LEADERBOARD</LevelSelectionText>
+                <LeaderboardText>LEADERBOARD</LeaderboardText>
                 <Line />
             </TitleContainer>
             {leaderboardInfo.length === 8 ?
@@ -69,7 +69,7 @@ function Leaderboard() {
                     <ForwardArrow onClick={incrementIndex} className="buttonClick" style={{ color: 'white', fontSize: '7vw' }} />
                 </ForwardArrowContainer>
                 : null}
-            <SignInContainer>
+            <LeaderboardContainer>
                 <Row>
                     <Column style={{ paddingRight: "12vw" }}><u>Position</u></Column>
                     <Column><u>Username</u></Column>
@@ -83,7 +83,7 @@ function Leaderboard() {
                             <Column style={{ paddingLeft: "12vw" }}>{player.stars}</Column>
                         </Row>)}
                 </ul>
-            </SignInContainer>
+            </LeaderboardContainer>
         </BackgroundImg>
     );
 }
