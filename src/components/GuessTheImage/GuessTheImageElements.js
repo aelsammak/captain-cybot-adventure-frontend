@@ -4,8 +4,8 @@ export const QuestionContainer = styled.div`
     position: absolute;
     top: 40%;
     left: 50%;
-    width: 40%;
-    height: 50%;
+    width: 45vw;
+    height: 30vw;
     transform: translate(-50%, -50%);
     border-radius: 1.563vw;
     background: #000A;
@@ -20,7 +20,7 @@ export const QuestionTypeText = styled.h1`
     padding-bottom: 3.5%;
     color: #fff;
     font-weight: 800;
-    font-size: 2.604vw;
+    font-size: 1.5vw;
 `
 
 export const HowToPlayText = styled.h1`

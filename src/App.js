@@ -17,6 +17,14 @@ import EarthLevel4 from './constants/EarthSpeech/EarthLevel4';
 import EarthQuizIntro from './constants/EarthSpeech/EarthQuizIntro';
 import EarthQuizOutro from './constants/EarthSpeech/EarthQuizOutro';
 
+// Test world image
+import img from "./images/Earth.png"
+import Crossword from './components/Crossword/Crossword';
+import WordSearch from './components/WordSearch/WordSearch';
+import WordScramble from './components/WordScramble/WordScramble';
+import GuessTheImage from './components/GuessTheImage/GuessTheImage';
+import Quiz from './components/Quiz/Quiz';
+import Leaderboard from './pages/Leaderboard/Leaderboard.js';
 
 function App() {
   return (
@@ -26,6 +34,7 @@ function App() {
             <Route path="/" exact element={<Home/>} />
             <Route path="/signup" exact element={<SignUp/>} />
             <Route path="/signin" exact element={<SignIn/>} />
+            <Route path="/leaderboard" exact element={<Leaderboard index='1'/>} />
             {localStorage.getItem("username") && 
             <>
                 <Route path="/menu" exact element={<Menu />} />

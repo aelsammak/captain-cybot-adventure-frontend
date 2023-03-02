@@ -17,7 +17,8 @@
 }
 
 .gray{
-    filter: grayscale(100%)
+    filter: grayscale(100%);
+    cursor: default;
 }
 
 .black{

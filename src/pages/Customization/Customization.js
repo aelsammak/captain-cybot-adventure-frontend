@@ -22,15 +22,13 @@ import axios from 'axios';
 function Customization() {
     var shieldImages = [defaultShield, shield1, shield2, shield3, shield4];
     var shieldStandImages = [defaultShieldStand, shield1Stand, shield2Stand, shield3Stand, shield4Stand];
+
     const [index, setIndex] = useState(0);
     const [equippedIndex, setEquippedIndex] = useState(0);
-
-    const [shield0Lock, setShield0Lock] = useState(false);
-    const [shield1Lock, setShield1Lock] = useState(false);
-    const [shield2Lock, setShield2Lock] = useState(false);
-    const [shield3Lock, setShield3Lock] = useState(false);
-    const [shield4Lock, setShield4Lock] = useState(true);
     const [isLoading, setLoading] = useState(true);
+    const [playerInfo, setPlayerInfo] = useState();
+
+    var shieldLock = [false, true, true, true, true];
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/v0/users/' + localStorage.getItem("username") + '/cosmetic',
@@ -42,14 +40,40 @@ function Customization() {
         )
             .then((res) => {
                 setEquippedIndex(res.data.unlockWorld);
-                setLoading(false);
             }).catch(err => {
                 console.log(err);
             });
+            axios.get('http://localhost:8080/api/v0/users/' + localStorage.getItem("username"),
+                {
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem("access_token")
+                    }
+                }
+            )
+                .then((res) => {
+                    setPlayerInfo(res.data.worlds);
+                    setLoading(false);
+                }).catch(err => {
+                    console.log(err);
+                });
     }, []);
+
+    
 
     if (isLoading) {
         return <div className="App">Loading...</div>;
+    } else {
+        playerInfo.forEach((world) => {
+            if (world.planet === "EARTH" && world.quizScore !== -1) {
+                shieldLock[1] = false;
+            } else if (world.planet === "MARS" && world.quizScore !== -1) {
+                shieldLock[2] = false;
+            } else if (world.planet === "NEPTUNE" && world.quizScore !== -1) {
+                shieldLock[3] = false;
+            } else if (world.planet === "JUPITER" && world.quizScore !== -1) {
+                shieldLock[4] = false;
+            }
+        });
     }
 
     const incrementIndex = () => {
@@ -77,7 +101,7 @@ function Customization() {
 
     const equip = () => {
         setEquippedIndex(index);
-        axios.patch('http://localhost:8080/api/v0/users/newguy/cosmetic', body, {
+        axios.patch('http://localhost:8080/api/v0/users/'+ localStorage.getItem("username") +'/cosmetic', body, {
             headers: headers
         }).then((res) => {
             console.log("Patch success")
@@ -102,13 +126,13 @@ function Customization() {
                     <BackArrow onClick={decrementIndex} className="buttonClick" style={{ color: 'white', fontSize: '7vw' }} />
                 </BackArrowContainer>
                 <ShieldContainer>
-                    {eval("shield" + index + "Lock") ? <LockIcon className="lockOverlay" style={{ fontSize: '8vw' }} /> : null}
-                    <img onClick={equip} src={shieldImages[index]} alt="shield" className={"shieldStyle" + index + " " + (eval("shield" + index + "Lock") ? "black" : "buttonClick floating")} />
+                    {shieldLock[index] ? <LockIcon className="lockOverlay" style={{ fontSize: '8vw' }} /> : null}
+                    <img onClick={equip} src={shieldImages[index]} alt="shield" className={"shieldStyle" + index + " " + (shieldLock[index] ? "black" : "buttonClick floating")} />
                 </ShieldContainer>
                 <ForwardArrowContainer>
                     <ForwardArrow onClick={incrementIndex} className="buttonClick" style={{ color: 'white', fontSize: '7vw' }} />
                 </ForwardArrowContainer>
-                <EquipButton disabled={eval("shield" + index + "Lock") || index === equippedIndex} onClick={equip}>EQUIP</EquipButton>
+                <EquipButton disabled={shieldLock[index] || index === equippedIndex} onClick={equip}>EQUIP</EquipButton>
             </ShopContainer>
         </BackgroundImg>
     );
