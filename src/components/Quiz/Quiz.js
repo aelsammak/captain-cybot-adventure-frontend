@@ -66,7 +66,7 @@ function Quiz(props) {
         </IconButton>
 
         <QuizContainer>
-          <QuizTitle>QUIZ - WORLD 1</QuizTitle>
+          <QuizTitle>QUIZ - {props.planet}</QuizTitle>
           <Line width={"100%"} />
           {showResults ? (
               <QuizScoreContainer>
