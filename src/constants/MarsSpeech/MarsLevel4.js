@@ -1,5 +1,5 @@
 const MarsLevel4 = [
-    "PLACEHOLDER"
+    "Not too bad! \nLooks like we have just one last puzzle… Go ahead!"
 ]
 
 export default MarsLevel4
