@@ -6,7 +6,7 @@ export const SignUpContainer = styled.div`
     top: 40%;
     left: 50%;
     width: 30%;
-    height: 38vw;
+    height: 36vw;
     transform: translate(-50%, -50%);
     background: #000A;
     align-items: center;

@@ -97,8 +97,6 @@ function SignUp() {
                     <ErrorContainer>
                         {showError && <Error>{errorMsg}</Error>}
                     </ErrorContainer>
-                    <input required type="checkbox" style={{float: "left", width:"2.4vh", height: "2.8vh", accentColor: "#c548ff"}}/>
-                    <SignInStatement style={{margin: "0.8% 0% 5%"}}>I HAVE MY PARENT'S PERMISSION TO REGISTER</SignInStatement>
                     <SignUpBtn type="submit">REGISTER</SignUpBtn>
                     <SignInStatement>ALREADY HAVE AN ACCOUNT?<SignInToggle to="/signin">SIGN IN</SignInToggle></SignInStatement>
                 </form>
