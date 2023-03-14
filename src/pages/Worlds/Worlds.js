@@ -65,7 +65,7 @@ function Worlds() {
 
     return (
         <div>
-            {isNewUser && <Speech messages={welcomeMessages} isNewUser={isNewUser} setIsNewUser={setIsNewUser} redirect={"/worlds"} />}
+            {isNewUser && <Speech messages={welcomeMessages} shieldImg={0} isNewUser={isNewUser} setIsNewUser={setIsNewUser} redirect={"/worlds"} />}
             {!isNewUser && <BackgroundImg img={background} >
                 <Link to="/menu">
                     <HomeIcon className="buttonClick" style={{ color: 'white', fontSize: '5vw', paddingLeft: '1%', paddingTop: '0.5%' }} />

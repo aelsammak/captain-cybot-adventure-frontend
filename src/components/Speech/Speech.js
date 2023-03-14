@@ -22,26 +22,6 @@ function Speech(props) {
 
     var shieldImages = [cybotStance1, cybotStance2, cybotStance3, cybotStance4, cybotStance5];
 
-    useEffect(() => {
-        axios.get('http://localhost:8080/api/v0/users/' + localStorage.getItem("username") + '/cosmetic',
-            {
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem("access_token")
-                }
-            }
-        )
-        .then((res) => {
-            setEquippedIndex(res.data.unlockWorld);
-            setLoading(false);
-        }).catch(err => {
-            console.log(err);
-        });
-    }, []);
-
-    if (isLoading) {
-        return <div className="App">Loading...</div>;
-    } else {}
-
     const handleClick = () => {
         console.log(props.messages);
         if (currentMessageIndex < props.messages.length - 1) {
@@ -70,7 +50,7 @@ function Speech(props) {
                                 </TopContainer>}
             {!props.isNewUser && <MiddleContainer><PlanetImg src={props.planetImg} alt=""></PlanetImg></MiddleContainer>}
             {!props.isNewUser && <BottomContainer>
-                                    <CybotStanceImg src={shieldImages[equippedIndex]} alt=""></CybotStanceImg> 
+                                    <CybotStanceImg src={shieldImages[props.shieldImg]} alt=""></CybotStanceImg> 
                                     <TextBubble>
                                         <div>{props.messages[currentMessageIndex]}</div>
                                         <div style={{margin: "auto"}}><NextBtn onClick={handleClick}>NEXT</NextBtn></div>
@@ -82,7 +62,7 @@ function Speech(props) {
                                 </IconButton>}
             {props.isNewUser && <MiddleContainer><RocketShip src={GIF} alt=""></RocketShip></MiddleContainer>}
             {props.isNewUser && <BottomContainer style={{marginTop: "3%"}}>
-                                    <CybotStanceImg src={shieldImages[equippedIndex]} alt=""></CybotStanceImg> 
+                                    <CybotStanceImg src={shieldImages[props.shieldImg]} alt=""></CybotStanceImg> 
                                     <TextBubble>
                                         <div>{props.messages[currentMessageIndex]}</div>
                                         <div style={{margin: "auto"}}><NextBtn onClick={handleClick}>NEXT</NextBtn></div>
