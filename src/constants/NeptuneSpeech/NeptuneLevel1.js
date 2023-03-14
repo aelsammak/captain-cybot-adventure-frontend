@@ -1,6 +1,6 @@
 const NeptuneLevel1 = [
     "*You arrive at Neptune*",
-    "Hey nice to see you again…..I'm just making sure the malware attack doesn't make its way into Neptune.",
+    "Hey, nice to see you again...I'm just making sure the malware attack doesn't make its way into Neptune.",
     "Why don't you help me look out for any malware coming in?",
     "*You agree to help*",
     "What's that?",

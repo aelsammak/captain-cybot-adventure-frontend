@@ -113,8 +113,18 @@ function Letter(props) {
           }
     }
 
+    const determineColor = () => {
+        if (isLetterSelected && props.isDisabled) {
+            return "#00FF00";
+        } else if (isLetterSelected && !props.isDisabled) {
+            return "#c548ff";
+        } else {
+            return "";
+        }
+    }
+
     return (
-        <th style={{backgroundColor: isLetterSelected ? "#c548ff" : ""}} onClick={handleClick}>
+        <th style={{backgroundColor: determineColor()}} onClick={handleClick}>
             <Character>{props.letter}</Character>
         </th>
     );
