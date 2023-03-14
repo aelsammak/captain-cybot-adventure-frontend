@@ -29,11 +29,6 @@ function Worlds() {
             {
                 headers: headers
             });
-        for (let i = 1; i < data.worlds.length; i++) {
-            if (data.worlds[i - 1].levelsCompleted === 4) {
-                eval("setWorld" + i + "Lock(false)");
-            }
-        }
     };
 
     useEffect(() => {
@@ -41,6 +36,7 @@ function Worlds() {
         axios.get(('http://localhost:8080/api/v0/users/' + localStorage.getItem("username")), {
             headers: headers
         }).then((res) => {
+            console.log(res);
             setIsNewUser(res.data.newUser);
             setPlayerInfo(res.data.worlds);
             setLoading(false);

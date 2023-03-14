@@ -37,20 +37,20 @@ export const RocketShip = styled.img`
 `
 
 export const CybotStanceImg = styled.img`
-    width: 51%;
+    width: 45%;
     margin: 0 0 auto auto;
     z-index: 3;
 `
 
 export const TextBubble = styled.div`
     width: 80%;
-    height: 12.879vw;
+    height: 12vw;
     background: #EAEFF2;
     padding: 1.064vw 3.193vw;
     text-align: center;
     font-weight: 600;
     color: #000;
-    margin-top: 1.22vw;
+    margin-top: 1vw;
     margin-left: -3.299vw;
     position: relative;
     font-size: 1.06vw;
