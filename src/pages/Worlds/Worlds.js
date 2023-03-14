@@ -36,7 +36,6 @@ function Worlds() {
         axios.get(('http://localhost:8080/api/v0/users/' + localStorage.getItem("username")), {
             headers: headers
         }).then((res) => {
-            console.log(res);
             setIsNewUser(res.data.newUser);
             setPlayerInfo(res.data.worlds);
             setLoading(false);
