@@ -29,11 +29,6 @@ function Worlds() {
             {
                 headers: headers
             });
-        for (let i = 1; i < data.worlds.length; i++) {
-            if (data.worlds[i - 1].levelsCompleted === 4) {
-                eval("setWorld" + i + "Lock(false)");
-            }
-        }
     };
 
     useEffect(() => {
@@ -70,7 +65,7 @@ function Worlds() {
 
     return (
         <div>
-            {isNewUser && <Speech messages={welcomeMessages} isNewUser={isNewUser} setIsNewUser={setIsNewUser} redirect={"/worlds"} />}
+            {isNewUser && <Speech messages={welcomeMessages} shieldImg={0} isNewUser={isNewUser} setIsNewUser={setIsNewUser} redirect={"/worlds"} />}
             {!isNewUser && <BackgroundImg img={background} >
                 <Link to="/menu">
                     <HomeIcon className="buttonClick" style={{ color: 'white', fontSize: '5vw', paddingLeft: '1%', paddingTop: '0.5%' }} />
