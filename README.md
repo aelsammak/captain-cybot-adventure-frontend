@@ -1,5 +1,7 @@
 # Captain Cybot's Adventure Frontend
 
+<img src="https://github.com/aelsammak/captain-cybot-adventure-frontend/blob/master/src/images/Stand.png" width="500" />
+
 ## Setup:
 
 ### Database:
